@@ -74,8 +74,11 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.menuPrincipal.setMenuBar(GPI.barraMenu);
 						// Añado el menu Productos
 						GPI.menuProductos.add(GPI.mniProductosAlta);
+						GPI.mniProductosAlta.addActionListener(this);
 						GPI.menuProductos.add(GPI.mniProductosModificacion);
+						GPI.mniProductosModificacion.addActionListener(this);
 						GPI.menuProductos.add(GPI.mniProductosConsulta);
+						GPI.mniProductosConsulta.addActionListener(this);
 						// Añado el menu Proveedores
 						GPI.menuProveedores.add(GPI.mniProveedoresAlta);
 						GPI.mniProveedoresAlta.addActionListener(this);
@@ -87,10 +90,14 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.mniProveedoresConsulta.addActionListener(this);
 						// Añado el menu Locales
 						GPI.menuLocales.add(GPI.mniLocalesAlta);
+						GPI.mniLocalesAlta.addActionListener(this);
 						GPI.menuLocales.add(GPI.mniLocalesConsulta);
+						GPI.mniLocalesConsulta.addActionListener(this);
 						// Añado el menu Ventas
 						GPI.menuVentas.add(GPI.mniVentasAlta);
+						GPI.mniVentasAlta.addActionListener(this);
 						GPI.menuVentas.add(GPI.mniVentasConsulta);
+						GPI.mniVentasConsulta.addActionListener(this);
 						// Asigno el menú a la barrra de menú
 						GPI.barraMenu.add(GPI.menuProductos);
 						GPI.barraMenu.add(GPI.menuProveedores);
@@ -110,13 +117,16 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.menuPrincipal.setMenuBar(GPI.barraMenu);
 						// Añado el menu Productos
 						GPI.menuProductos.add(GPI.mniProductosAlta);
+						GPI.mniProductosAlta.addActionListener(this);
 						// Añado el menu Proveedores
 						GPI.menuProveedores.add(GPI.mniProveedoresAlta);
 						GPI.mniProveedoresAlta.addActionListener(this);
 						// Añado el menu Locales
 						GPI.menuLocales.add(GPI.mniLocalesAlta);
+						GPI.mniLocalesAlta.addActionListener(this);
 						// Añado el menu Ventas
 						GPI.menuVentas.add(GPI.mniVentasAlta);
+						GPI.mniVentasAlta.addActionListener(this);
 						// Asigno el menú a la barrra de menú
 						GPI.barraMenu.add(GPI.menuProductos);
 						GPI.barraMenu.add(GPI.menuProveedores);
@@ -163,6 +173,21 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 			}
 		}
 
+		// Alta de productos
+		else if(evento.getSource().equals(GPI.mniProductosAlta)) 
+		{
+			new AltaProductos();
+		}
+		// Modificacion de productos
+		else if(evento.getSource().equals(GPI.mniProductosModificacion)) 
+		{
+			new ModificacionProductos();
+		}
+		// Consulta de productos;
+		else if(evento.getSource().equals(GPI.mniProductosConsulta)) 
+		{
+			new ConsultaProductos();
+		}
 		// Alta de proveedores
 		else if(evento.getSource().equals(GPI.mniProveedoresAlta)) 
 		{

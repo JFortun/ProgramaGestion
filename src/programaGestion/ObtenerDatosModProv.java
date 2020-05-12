@@ -83,13 +83,13 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 		{
 			try
 			{
-				int idProElegido = Integer.parseInt(GPI.choModificacionProveedor.getSelectedItem().split("-")[0]);
+				int idProvElegido = Integer.parseInt(GPI.choModificacionProveedor.getSelectedItem().split("-")[0]);
 				String nombre = GPI.txtMPNombreProveedor.getText();
 				String telefono = GPI.txtMPTelefonoProveedor.getText();
 				String nif = GPI.txtMPNIFProveedor.getText();
 
 				GPBD.ConexionBD();
-				GPBD.sentencia = "UPDATE proveedores SET nombreProveedor = '"+nombre+"', telefonoProveedor = "+telefono+", nifProveedor = '"+nif+"' WHERE idProveedor="+idProElegido;
+				GPBD.sentencia = "UPDATE proveedores SET nombreProveedor = '"+nombre+"', telefonoProveedor = "+telefono+", nifProveedor = '"+nif+"' WHERE idProveedor="+idProvElegido;
 				GPBD.statement.executeUpdate(GPBD.sentencia);
 				System.out.println("Modificación realizada con éxito");
 			}
