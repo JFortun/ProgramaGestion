@@ -48,7 +48,6 @@ public class AltaProveedores extends WindowAdapter implements ActionListener
 				GPBD.ConexionBD();
 				GPBD.sentencia = "INSERT INTO proveedores (nombreProveedor,telefonoProveedor,nifProveedor) VALUES ('" + GPI.txtAPNombreProveedor.getText()+ "',"+ GPI.txtAPTelefonoProveedor.getText()+",'"+GPI.txtAPNIFProveedor.getText()+"')";
 				GPBD.statement.executeUpdate(GPBD.sentencia);
-				System.out.println("Alta realizada con éxito");
 			}
 
 			catch (SQLException sqle)
@@ -58,6 +57,7 @@ public class AltaProveedores extends WindowAdapter implements ActionListener
 
 			finally
 			{
+				Log.registrarLog("Alta de proveedor realizada");
 				try
 				{
 					if(GPBD.connection!=null)

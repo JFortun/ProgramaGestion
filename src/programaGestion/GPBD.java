@@ -40,7 +40,10 @@ public class GPBD {
 			System.out.println("Error 2-"+sqle.getMessage());
 		}
 
-		finally{}
+		finally
+		{
+			Log.registrarLog("Conexión a la base de datos realizada");
+		}
 	}
 
 }

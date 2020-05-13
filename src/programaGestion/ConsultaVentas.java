@@ -26,7 +26,6 @@ public class ConsultaVentas extends WindowAdapter
 			GPBD.ConexionBD();
 			GPBD.sentencia = "SELECT * FROM venden";
 			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			System.out.println("Consulta realizada con éxito");
 			GPI.taConsultaVenta.setText("");
 			while(GPBD.rs.next())
 			{
@@ -51,6 +50,7 @@ public class ConsultaVentas extends WindowAdapter
 		}
 		finally
 		{
+			Log.registrarLog("Consulta de venta realizada");
 			try
 			{
 				if(GPBD.connection!=null)

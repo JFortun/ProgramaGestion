@@ -26,7 +26,6 @@ public class ConsultaProductos extends WindowAdapter
 			GPBD.ConexionBD();
 			GPBD.sentencia = "SELECT * FROM productos";
 			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			System.out.println("Consulta realizada con éxito");
 			GPI.taConsultaProducto.setText("");
 			while(GPBD.rs.next())
 			{
@@ -55,6 +54,7 @@ public class ConsultaProductos extends WindowAdapter
 		}
 		finally
 		{
+			Log.registrarLog("Consulta de producto realizada");
 			try
 			{
 				if(GPBD.connection!=null)

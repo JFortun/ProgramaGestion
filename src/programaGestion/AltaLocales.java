@@ -27,7 +27,15 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 		GPI.txtALDireccionLocal.selectAll();
 		GPI.txtALDireccionLocal.setText("");
 	}
-
+	
+	public void windowClosing(WindowEvent arg0) //Averiguar porqué no funciona
+	{
+		if(GPI.altaLocal.isActive())
+		{
+			GPI.altaLocal.setVisible(false);
+		}
+	}
+	
 	public void actionPerformed(ActionEvent evento)
 	{
 
@@ -40,7 +48,6 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 				GPBD.ConexionBD();
 				GPBD.sentencia = "INSERT INTO locales (direccionLocal) VALUES ('"+GPI.txtALDireccionLocal.getText()+"')";
 				GPBD.statement.executeUpdate(GPBD.sentencia);
-				System.out.println("Alta realizada con éxito");
 			}
 
 			catch (SQLException sqle)
@@ -50,6 +57,7 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 
 			finally
 			{
+				Log.registrarLog("Alta de local realizada");
 				try
 				{
 					if(GPBD.connection!=null)
@@ -69,15 +77,6 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 			GPI.txtALDireccionLocal.selectAll();
 			GPI.txtALDireccionLocal.setText("");
 			GPI.txtALDireccionLocal.requestFocus();
-		}
-
-	}
-
-	public void windowClosing(WindowEvent arg0) //Averiguar porqué no funciona
-	{
-		if(GPI.altaLocal.isActive())
-		{
-			GPI.altaLocal.setVisible(false);
 		}
 	}
 }

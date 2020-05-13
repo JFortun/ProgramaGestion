@@ -26,7 +26,6 @@ public class ConsultaProveedores extends WindowAdapter
 			GPBD.ConexionBD();
 			GPBD.sentencia = "SELECT * FROM proveedores";
 			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			System.out.println("Consulta realizada con éxito");
 			GPI.taConsultaProveedor.setText("");
 			while(GPBD.rs.next())
 			{
@@ -53,6 +52,7 @@ public class ConsultaProveedores extends WindowAdapter
 		}
 		finally
 		{
+			Log.registrarLog("Consulta de proveedor realizada");
 			try
 			{
 				if(GPBD.connection!=null)

@@ -87,7 +87,6 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 				GPBD.ConexionBD();
 				GPBD.sentencia = "INSERT INTO productos (nombreProducto,descripcionProducto,stockProducto,precioProducto,idProveedorFK) VALUES ('" + GPI.txtAPNombreProducto.getText()+ "','" + GPI.taAPDescripcionProducto.getText()+ "',"+ GPI.txtAPStockProducto.getText()+","+ GPI.txtAPPrecioProducto.getText()+",'"+ProveedorProducto+"')";
 				GPBD.statement.executeUpdate(GPBD.sentencia);
-				System.out.println("Alta realizada con éxito");
 			}
 
 			catch (SQLException sqle)
@@ -97,6 +96,7 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 
 			finally
 			{
+				Log.registrarLog("Alta de producto realizada");
 				try
 				{
 					if(GPBD.connection!=null)

@@ -91,7 +91,6 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 				GPBD.ConexionBD();
 				GPBD.sentencia = "UPDATE proveedores SET nombreProveedor = '"+nombre+"', telefonoProveedor = "+telefono+", nifProveedor = '"+nif+"' WHERE idProveedor="+idProvElegido;
 				GPBD.statement.executeUpdate(GPBD.sentencia);
-				System.out.println("Modificación realizada con éxito");
 			}
 			catch (SQLException sqle)
 			{
@@ -99,6 +98,7 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 			}
 			finally
 			{
+				Log.registrarLog("Modificacion de proveedor realizada");
 				try
 				{
 					if(GPBD.connection!=null)

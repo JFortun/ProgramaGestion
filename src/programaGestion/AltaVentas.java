@@ -118,7 +118,6 @@ public class AltaVentas extends WindowAdapter implements ActionListener
 				GPBD.ConexionBD();
 				GPBD.sentencia = "INSERT INTO venden (idLocalFK,idProductoFK,fechaVenta) VALUES (" + localVenta+ "," + productoVenta+ ",'"+fechaFormateada[0]+"-"+fechaFormateada[1]+"-"+fechaFormateada[2]+"')";
 				GPBD.statement.executeUpdate(GPBD.sentencia);
-				System.out.println("Alta realizada con éxito");
 			}
 
 			catch (SQLException sqle)
@@ -128,6 +127,7 @@ public class AltaVentas extends WindowAdapter implements ActionListener
 
 			finally
 			{
+				Log.registrarLog("Alta de venta realizada");
 				try
 				{
 					if(GPBD.connection!=null)

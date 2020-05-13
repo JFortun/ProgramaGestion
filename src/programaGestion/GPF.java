@@ -12,6 +12,8 @@ import java.sql.SQLException;
 
 public class GPF extends WindowAdapter implements ActionListener, WindowListener
 {
+	static int tipoUsuario = 0;
+	
 	GPF()
 	{
 		GPI.login.setLayout(new FlowLayout());
@@ -61,8 +63,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 					GPBD.sentencia = "SELECT tipoUsuario FROM usuarios WHERE nombreUsuario = '" + GPI.txtUsuario.getText()+"'";
 					GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
 					GPBD.rs.next();
-					int tipoUsuario = GPBD.rs.getInt("tipoUsuario");
-					System.out.println("el usuario es de tipo = " + tipoUsuario);
+					tipoUsuario = GPBD.rs.getInt("tipoUsuario");
 					if (tipoUsuario == 1)
 					{
 						GPI.menuPrincipal.setLayout(new FlowLayout());
@@ -159,6 +160,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 
 			finally
 			{
+				Log.registrarLog("Conexión de usuario realizada");
 				try
 				{
 					if(GPBD.connection!=null)

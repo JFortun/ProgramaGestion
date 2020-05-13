@@ -85,7 +85,6 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 				GPBD.ConexionBD();
 				GPBD.sentencia = "DELETE FROM proveedores WHERE idProveedor = " + Integer.parseInt(PSeleccionado[0]);
 				GPBD.statement.executeUpdate(GPBD.sentencia);
-				System.out.println("Baja realizada con éxito");
 			}
 			catch (SQLException sqle)
 			{
@@ -93,6 +92,7 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 			}
 			finally
 			{
+				Log.registrarLog("Baja de proveedor realizada");
 				try
 				{
 					if(GPBD.connection!=null)

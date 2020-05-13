@@ -25,7 +25,6 @@ public class ConsultaLocales extends WindowAdapter
 			GPBD.ConexionBD();
 			GPBD.sentencia = "SELECT * FROM locales";
 			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			System.out.println("Consulta realizada con éxito");
 			GPI.taConsultaLocal.setText("");
 			while(GPBD.rs.next())
 			{
@@ -48,6 +47,7 @@ public class ConsultaLocales extends WindowAdapter
 		}
 		finally
 		{
+			Log.registrarLog("Consulta de local realizada");
 			try
 			{
 				if(GPBD.connection!=null)
