@@ -208,6 +208,26 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 		{
 			new ConsultaProveedores();
 		}	
+		// Alta de locales
+		else if(evento.getSource().equals(GPI.mniLocalesAlta)) 
+		{
+			new AltaLocales();
+		}
+		// Consulta de locales;
+		else if(evento.getSource().equals(GPI.mniLocalesConsulta)) 
+		{
+			new ConsultaLocales();
+		}
+		// Alta de ventas
+		else if(evento.getSource().equals(GPI.mniVentasAlta)) 
+		{
+			new AltaVentas();
+		}
+		// Consulta de ventas;
+		else if(evento.getSource().equals(GPI.mniVentasConsulta)) 
+		{
+			new ConsultaVentas();
+		}
 		else
 		{
 			// Tareas del Volver

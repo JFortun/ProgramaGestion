@@ -132,5 +132,34 @@ public class GPI extends WindowAdapter
 	//***************************************************************************************************************************************
 	//***************************************************************************************************************************************
 
+	// Creo los elementos de alta de locales
+	static Frame altaLocal = new Frame("ALTA DE LOCALES");
+	static Label lblALDireccionLocal = new Label("Dirección del local");
+	static TextField txtALDireccionLocal = new TextField(20);
+	static Button btnALAceptar = new Button("Aceptar");
+	static Button btnALLimpiar = new Button("Limpiar");
+	// Creo los elementos de consulta de proveedores
+	static Frame consultaLocal = new Frame("CONSULTA DE LOCALES");
+	static Label lblConsultaLocal = new Label("Éstos son los locales activos en la actualidad");
+	static Choice choConsultaLocal = new Choice();
+	static TextArea taConsultaLocal = new TextArea(10,60);
+	
+	//***************************************************************************************************************************************
+	//***************************************************************************************************************************************
 
+	// Creo los elementos de alta de locales
+	static Frame altaVenta = new Frame("ALTA DE VENTAS");
+	static Label lblAVLocalVenta = new Label("Selecciona un local");
+	static Label lblAVProductoVenta = new Label("Selecciona un producto");
+	static Label lblAVFechaVenta = new Label("Indica una fecha");
+	static Choice choAVLocalVenta = new Choice();
+	static Choice choAVProductoVenta = new Choice();
+	static TextField txtAVFechaVenta = new TextField(20);
+	static Button btnAVAceptar = new Button("Aceptar");
+	static Button btnAVLimpiar = new Button("Limpiar");
+	// Creo los elementos de consulta de proveedores
+	static Frame consultaVenta = new Frame("CONSULTA DE VENTAS");
+	static Label lblConsultaVenta = new Label("Éstos son las ventas realizadas");
+	static Choice choConsultaVenta = new Choice();
+	static TextArea taConsultaVenta = new TextArea(10,60);
 }
