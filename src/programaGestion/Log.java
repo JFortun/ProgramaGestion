@@ -24,7 +24,6 @@ public class Log
 			{
 				usuario = "Usuario";
 			}
-			System.out.println(GPF.tipoUsuario);
 			// Destino de los datos
 			FileWriter fw = new FileWriter("Registro.log", true);
 			// Buffer de escritura

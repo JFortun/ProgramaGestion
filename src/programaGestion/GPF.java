@@ -245,6 +245,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 		}
 		else
 		{
+			Log.registrarLog("Salida del programa");
 			System.exit(0);
 		}
 	}

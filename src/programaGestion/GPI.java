@@ -86,6 +86,7 @@ public class GPI extends WindowAdapter
 	static Label lblConsultaProducto = new Label("Éstos son los productos disponibles en la actualidad");
 	static Choice choConsultaProducto = new Choice();
 	static TextArea taConsultaProducto = new TextArea(10,60);
+	static Button btnCProdExportarPDF = new Button("Exportar a PDF");
 
 	//***************************************************************************************************************************************
 	//***************************************************************************************************************************************
@@ -128,6 +129,7 @@ public class GPI extends WindowAdapter
 	static Label lblConsultaProveedor = new Label("Éstos son los proveedores activos en la actualidad");
 	static Choice choConsultaProveedor = new Choice();
 	static TextArea taConsultaProveedor = new TextArea(10,60);
+	static Button btnCProvExportarPDF = new Button("Exportar a PDF");
 
 	//***************************************************************************************************************************************
 	//***************************************************************************************************************************************
@@ -138,16 +140,17 @@ public class GPI extends WindowAdapter
 	static TextField txtALDireccionLocal = new TextField(20);
 	static Button btnALAceptar = new Button("Aceptar");
 	static Button btnALLimpiar = new Button("Limpiar");
-	// Creo los elementos de consulta de proveedores
+	// Creo los elementos de consulta de locales
 	static Frame consultaLocal = new Frame("CONSULTA DE LOCALES");
 	static Label lblConsultaLocal = new Label("Éstos son los locales activos en la actualidad");
 	static Choice choConsultaLocal = new Choice();
 	static TextArea taConsultaLocal = new TextArea(10,60);
+	static Button btnCLExportarPDF = new Button("Exportar a PDF");
 	
 	//***************************************************************************************************************************************
 	//***************************************************************************************************************************************
 
-	// Creo los elementos de alta de locales
+	// Creo los elementos de alta de ventas
 	static Frame altaVenta = new Frame("ALTA DE VENTAS");
 	static Label lblAVLocalVenta = new Label("Selecciona un local");
 	static Label lblAVProductoVenta = new Label("Selecciona un producto");
@@ -157,9 +160,10 @@ public class GPI extends WindowAdapter
 	static TextField txtAVFechaVenta = new TextField(20);
 	static Button btnAVAceptar = new Button("Aceptar");
 	static Button btnAVLimpiar = new Button("Limpiar");
-	// Creo los elementos de consulta de proveedores
+	// Creo los elementos de consulta de ventas
 	static Frame consultaVenta = new Frame("CONSULTA DE VENTAS");
 	static Label lblConsultaVenta = new Label("Éstos son las ventas realizadas");
 	static Choice choConsultaVenta = new Choice();
 	static TextArea taConsultaVenta = new TextArea(10,60);
+	static Button btnCVExportarPDF = new Button("Exportar a PDF");
 }
