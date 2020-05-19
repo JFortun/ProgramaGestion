@@ -1,23 +1,31 @@
 package programaGestion;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
-public class GPF extends WindowAdapter implements ActionListener, WindowListener
+public class GPF extends JFrame implements ActionListener, WindowListener
 {
+	private static final long serialVersionUID = 1L;
+	
 	static int tipoUsuario = 0;
+	
+	Color colorLogin = new Color(204, 230, 255);
+	Color colorMenu = new Color(153, 255, 204);
+	
 	
 	GPF()
 	{
+		Color colorLogin = new Color(204, 230, 255);
 		GPI.login.setLayout(new FlowLayout());
-		GPI.login.setSize(270, 150);
+		GPI.login.setSize(315, 130);
 		GPI.login.setResizable(false);
 		GPI.login.setLocationRelativeTo(null);
 		GPI.login.addWindowListener(this);
@@ -31,6 +39,8 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 		GPI.login.add(GPI.btnAceptar);
 		GPI.login.add(GPI.btnLimpiar);
 		GPI.login.setVisible(true);
+		GPI.login.getContentPane().setBackground(colorLogin);
+
 	}
 
 	// Declaro los eventos que suceden en el login
@@ -47,7 +57,9 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 
 		else if(evento.getSource().equals(GPI.btnAceptar)) 
 		{
-			String cadenaEncriptada = GPCrypt.getSHA256(GPI.txtClave.getText());
+			char[] claveExtraida = GPI.txtClave.getPassword();
+			String clave = new String(claveExtraida);
+			String cadenaEncriptada = GPCrypt.getSHA256(clave);
 			GPBD.sentencia = "SELECT * FROM usuarios WHERE nombreUsuario = '"+ GPI.txtUsuario.getText()+ "'AND claveUsuario = '"+ cadenaEncriptada+"'";
 
 			try
@@ -72,7 +84,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.menuPrincipal.addWindowListener(this);
 						GPI.menuPrincipal.setLocationRelativeTo(null);
 						GPI.menuPrincipal.setVisible(true);
-						GPI.menuPrincipal.setMenuBar(GPI.barraMenu);
+						GPI.menuPrincipal.setJMenuBar(GPI.barraMenu);
 						// Añado el menu Productos
 						GPI.menuProductos.add(GPI.mniProductosAlta);
 						GPI.mniProductosAlta.addActionListener(this);
@@ -106,6 +118,8 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.barraMenu.add(GPI.menuVentas);
 						// Pongo invisible el login
 						GPI.login.setVisible(false);
+						GPI.menuPrincipal.getContentPane().setBackground(colorMenu);
+
 					}
 					else if (tipoUsuario == 2)
 					{
@@ -115,7 +129,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.menuPrincipal.addWindowListener(this);
 						GPI.menuPrincipal.setLocationRelativeTo(null);
 						GPI.menuPrincipal.setVisible(true);
-						GPI.menuPrincipal.setMenuBar(GPI.barraMenu);
+						GPI.menuPrincipal.setJMenuBar(GPI.barraMenu);
 						// Añado el menu Productos
 						GPI.menuProductos.add(GPI.mniProductosAlta);
 						GPI.mniProductosAlta.addActionListener(this);
@@ -135,6 +149,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 						GPI.barraMenu.add(GPI.menuVentas);
 						// Pongo invisible el login
 						GPI.login.setVisible(false);
+						GPI.menuPrincipal.getContentPane().setBackground(colorMenu);
 					}
 				}
 
@@ -150,6 +165,7 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 					GPI.errorLogin.add(btnVolver);
 					GPI.errorLogin.setLocationRelativeTo(null);
 					GPI.errorLogin.setVisible(true);
+
 				}
 			}
 
@@ -249,4 +265,17 @@ public class GPF extends WindowAdapter implements ActionListener, WindowListener
 			System.exit(0);
 		}
 	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {}
+	@Override
+	public void windowClosed(WindowEvent e) {}
+	@Override
+	public void windowIconified(WindowEvent e) {}
+	@Override
+	public void windowDeiconified(WindowEvent e) {}
+	@Override
+	public void windowActivated(WindowEvent e) {}
+	@Override
+	public void windowDeactivated(WindowEvent e) {}
 }

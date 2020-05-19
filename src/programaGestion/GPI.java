@@ -5,46 +5,52 @@ import java.awt.Choice;
 import java.awt.Dialog;
 import java.awt.Frame;
 import java.awt.Label;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
 import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.WindowAdapter;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class GPI extends WindowAdapter
 {
 
 	// Creo los frames
-	static Frame login = new Frame("Login");
-	static Frame menuPrincipal = new Frame("Menú Principal");
+	static JFrame login = new JFrame("Login");
+	static JFrame menuPrincipal = new JFrame("Menú Principal");
 	// Creo la barra de menú
-	static MenuBar barraMenu = new MenuBar();
+	static JMenuBar barraMenu = new JMenuBar();
 	// Creo los menús
-	static Menu menuProductos = new Menu("Productos");
-	static Menu menuProveedores = new Menu("Proveedores");
-	static Menu menuLocales = new Menu("Locales");
-	static Menu menuVentas = new Menu("Ventas");
+	static JMenu menuProductos = new JMenu("Productos");
+	static JMenu menuProveedores = new JMenu("Proveedores");
+	static JMenu menuLocales = new JMenu("Locales");
+	static JMenu menuVentas = new JMenu("Ventas");
 	// Creo los menuItems
-	static MenuItem mniProductosAlta = new MenuItem("Alta");
-	static MenuItem mniProductosModificacion = new MenuItem("Modificacion");
-	static MenuItem mniProductosConsulta = new MenuItem("Consulta");
-	static MenuItem mniProveedoresAlta = new MenuItem("Alta");
-	static MenuItem mniProveedoresBaja = new MenuItem("Baja");
-	static MenuItem mniProveedoresModificacion = new MenuItem("Modificacion");
-	static MenuItem mniProveedoresConsulta = new MenuItem("Consulta");
-	static MenuItem mniLocalesAlta = new MenuItem("Alta");
-	static MenuItem mniLocalesConsulta = new MenuItem("Consulta");
-	static MenuItem mniVentasAlta = new MenuItem("Alta");
-	static MenuItem mniVentasConsulta = new MenuItem("Consulta");
+	static JMenuItem mniProductosAlta = new JMenuItem("Alta");
+	static JMenuItem mniProductosModificacion = new JMenuItem("Modificacion");
+	static JMenuItem mniProductosConsulta = new JMenuItem("Consulta");
+	static JMenuItem mniProveedoresAlta = new JMenuItem("Alta");
+	static JMenuItem mniProveedoresBaja = new JMenuItem("Baja");
+	static JMenuItem mniProveedoresModificacion = new JMenuItem("Modificacion");
+	static JMenuItem mniProveedoresConsulta = new JMenuItem("Consulta");
+	static JMenuItem mniLocalesAlta = new JMenuItem("Alta");
+	static JMenuItem mniLocalesConsulta = new JMenuItem("Consulta");
+	static JMenuItem mniVentasAlta = new JMenuItem("Alta");
+	static JMenuItem mniVentasConsulta = new JMenuItem("Consulta");
 	// Creo los elementos de la ventana de login
-	static Dialog errorLogin = new Dialog(login,"ERROR", true);
-	static Label lblUsuario = new Label("Usuario:");
-	static Label lblClave = new Label("Clave:");
-	static TextField txtUsuario = new TextField(20); 
-	static TextField txtClave = new TextField(20);
-	static Button btnAceptar = new Button("Aceptar");
-	static Button btnLimpiar = new Button("Limpiar");
+	static JDialog errorLogin = new JDialog(login,"ERROR", true);
+	static JLabel lblUsuario = new JLabel("Usuario:");
+	static JLabel lblClave = new JLabel("Clave:");
+	static JTextField txtUsuario = new JTextField(20); 
+	static JPasswordField txtClave = new JPasswordField(20);
+	static JButton btnAceptar = new JButton("Aceptar");
+	static JButton btnLimpiar = new JButton("Limpiar");
 
 	//***************************************************************************************************************************************
 	//***************************************************************************************************************************************
