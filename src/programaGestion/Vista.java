@@ -18,7 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class GPI extends WindowAdapter
+public class Vista extends WindowAdapter
 {
 
 	// Creo los frames
@@ -31,6 +31,7 @@ public class GPI extends WindowAdapter
 	static JMenu menuProveedores = new JMenu("Proveedores");
 	static JMenu menuLocales = new JMenu("Locales");
 	static JMenu menuVentas = new JMenu("Ventas");
+	static JMenu menuAyuda = new JMenu("Ayuda");
 	// Creo los menuItems
 	static JMenuItem mniProductosAlta = new JMenuItem("Alta");
 	static JMenuItem mniProductosModificacion = new JMenuItem("Modificacion");
@@ -43,6 +44,7 @@ public class GPI extends WindowAdapter
 	static JMenuItem mniLocalesConsulta = new JMenuItem("Consulta");
 	static JMenuItem mniVentasAlta = new JMenuItem("Alta");
 	static JMenuItem mniVentasConsulta = new JMenuItem("Consulta");
+	static JMenuItem mniAyuda = new JMenuItem("Ayuda");
 	// Creo los elementos de la ventana de login
 	static JDialog errorLogin = new JDialog(login,"ERROR", true);
 	static JLabel lblUsuario = new JLabel("Usuario:");
@@ -51,6 +53,8 @@ public class GPI extends WindowAdapter
 	static JPasswordField txtClave = new JPasswordField(20);
 	static JButton btnAceptar = new JButton("Aceptar");
 	static JButton btnLimpiar = new JButton("Limpiar");
+	static Button btnELVolver = new Button("Volver");
+	static JLabel lblErrorLogin = new JLabel("Credenciales incorrectas");
 
 	//***************************************************************************************************************************************
 	//***************************************************************************************************************************************

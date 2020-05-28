@@ -12,31 +12,31 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 
 	BajaProveedores()
 	{
-		GPI.bajaProveedor.setLayout(new FlowLayout());
-		GPI.bajaProveedor.setSize(400, 120);
-		GPI.bajaProveedor.setResizable(false);
-		GPI.bajaProveedor.addWindowListener(this);
-		GPI.bajaProveedor.add(GPI.lblBajaProveedor);
-		GPI.bajaProveedor.add(GPI.choBajaProveedor);
-		GPI.btnBProvAceptar.addActionListener(this);
-		GPI.bajaProveedor.add(GPI.btnBProvAceptar);
-		GPI.btnBProvAceptar.addActionListener(this);
-		GPI.bajaProveedor.setLocationRelativeTo(null);
-		GPI.bajaProveedor.setVisible(true);
+		Vista.bajaProveedor.setLayout(new FlowLayout());
+		Vista.bajaProveedor.setSize(400, 120);
+		Vista.bajaProveedor.setResizable(false);
+		Vista.bajaProveedor.addWindowListener(this);
+		Vista.bajaProveedor.add(Vista.lblBajaProveedor);
+		Vista.bajaProveedor.add(Vista.choBajaProveedor);
+		Vista.btnBProvAceptar.addActionListener(this);
+		Vista.bajaProveedor.add(Vista.btnBProvAceptar);
+		Vista.btnBProvAceptar.addActionListener(this);
+		Vista.bajaProveedor.setLocationRelativeTo(null);
+		Vista.bajaProveedor.setVisible(true);
 
 		//Sentencia para recopilar los datos e introducirlos en el choice
 		try
 		{	
-			GPI.choBajaProveedor.removeAll();
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM proveedores";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
+			Vista.choBajaProveedor.removeAll();
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM proveedores";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
 
-			while(GPBD.rs.next())
+			while(Modelo.rs.next())
 			{
-				String poblarChoice = Integer.toString(GPBD.rs.getInt("idProveedor"));
-				poblarChoice = poblarChoice + "-"+ GPBD.rs.getString("nombreProveedor");
-				GPI.choBajaProveedor.add(poblarChoice);
+				String poblarChoice = Integer.toString(Modelo.rs.getInt("idProveedor"));
+				poblarChoice = poblarChoice + "-"+ Modelo.rs.getString("nombreProveedor");
+				Vista.choBajaProveedor.add(poblarChoice);
 			}
 		}
 		catch (SQLException sqle)
@@ -47,9 +47,9 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -62,29 +62,29 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 	public void actionPerformed(ActionEvent evento)
 	{
 
-		if(evento.getSource().equals(GPI.btnBProvAceptar))
+		if(evento.getSource().equals(Vista.btnBProvAceptar))
 		{
-			GPI.bajaProveedorConfirmacion.setLayout(new FlowLayout());
-			GPI.bajaProveedorConfirmacion.setSize(280, 125);
-			GPI.bajaProveedorConfirmacion.setResizable(false);
-			GPI.bajaProveedorConfirmacion.addWindowListener(this);
-			GPI.btnBProvConfirmar.addActionListener(this);
-			GPI.btnBProvVolver.addActionListener(this);
-			GPI.bajaProveedorConfirmacion.add(GPI.lblBajaProveedorConfirmacion);
-			GPI.bajaProveedorConfirmacion.add(GPI.btnBProvConfirmar);
-			GPI.bajaProveedorConfirmacion.add(GPI.btnBProvVolver);
-			GPI.bajaProveedorConfirmacion.setLocationRelativeTo(null);
-			GPI.bajaProveedorConfirmacion.setVisible(true);
+			Vista.bajaProveedorConfirmacion.setLayout(new FlowLayout());
+			Vista.bajaProveedorConfirmacion.setSize(280, 125);
+			Vista.bajaProveedorConfirmacion.setResizable(false);
+			Vista.bajaProveedorConfirmacion.addWindowListener(this);
+			Vista.btnBProvConfirmar.addActionListener(this);
+			Vista.btnBProvVolver.addActionListener(this);
+			Vista.bajaProveedorConfirmacion.add(Vista.lblBajaProveedorConfirmacion);
+			Vista.bajaProveedorConfirmacion.add(Vista.btnBProvConfirmar);
+			Vista.bajaProveedorConfirmacion.add(Vista.btnBProvVolver);
+			Vista.bajaProveedorConfirmacion.setLocationRelativeTo(null);
+			Vista.bajaProveedorConfirmacion.setVisible(true);
 		}
-		else if(evento.getSource().equals(GPI.btnBProvConfirmar))
+		else if(evento.getSource().equals(Vista.btnBProvConfirmar))
 		{
 			try
 			{
-				String[] PSeleccionado=GPI.choBajaProveedor.getSelectedItem().split("-");
+				String[] PSeleccionado=Vista.choBajaProveedor.getSelectedItem().split("-");
 
-				GPBD.ConexionBD();
-				GPBD.sentencia = "DELETE FROM proveedores WHERE idProveedor = " + Integer.parseInt(PSeleccionado[0]);
-				GPBD.statement.executeUpdate(GPBD.sentencia);
+				Modelo.ConexionBD();
+				Modelo.sentencia = "DELETE FROM proveedores WHERE idProveedor = " + Integer.parseInt(PSeleccionado[0]);
+				Modelo.statement.executeUpdate(Modelo.sentencia);
 			}
 			catch (SQLException sqle)
 			{
@@ -95,9 +95,9 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 				Log.registrarLog("Baja de proveedor realizada");
 				try
 				{
-					if(GPBD.connection!=null)
+					if(Modelo.connection!=null)
 					{
-						GPBD.connection.close();
+						Modelo.connection.close();
 					}
 				}
 				catch (SQLException e)
@@ -106,21 +106,21 @@ public class BajaProveedores extends WindowAdapter implements ActionListener
 				}
 			}
 		}
-		else if(evento.getSource().equals(GPI.btnBProvVolver))//Investigar porqué hay que darle al botón 2 veces para que funcione
+		else if(evento.getSource().equals(Vista.btnBProvVolver))//Investigar porqué hay que darle al botón 2 veces para que funcione
 		{
-			GPI.bajaProveedorConfirmacion.setVisible(false);
+			Vista.bajaProveedorConfirmacion.setVisible(false);
 		}
 	}
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.bajaProveedor.isActive())
+		if(Vista.bajaProveedor.isActive())
 		{
-			GPI.bajaProveedor.setVisible(false);
+			Vista.bajaProveedor.setVisible(false);
 		}
-		else if(GPI.bajaProveedorConfirmacion.isActive())
+		else if(Vista.bajaProveedorConfirmacion.isActive())
 		{
-			GPI.bajaProveedorConfirmacion.setVisible(false);
+			Vista.bajaProveedorConfirmacion.setVisible(false);
 		}
 	}
 }

@@ -12,28 +12,28 @@ public class AltaProveedores extends WindowAdapter implements ActionListener
 
 	AltaProveedores()
 	{
-		GPI.altaProveedor.setLayout(new FlowLayout());
-		GPI.altaProveedor.setSize(350, 170);
-		GPI.altaProveedor.setResizable(false);
-		GPI.altaProveedor.addWindowListener(this);
-		GPI.btnAProvAceptar.addActionListener(this);
-		GPI.btnAProvLimpiar.addActionListener(this);
-		GPI.altaProveedor.add(GPI.lblAPNombreProveedor);
-		GPI.altaProveedor.add(GPI.txtAPNombreProveedor);
-		GPI.altaProveedor.add(GPI.lblAPTelefonoProveedor);
-		GPI.altaProveedor.add(GPI.txtAPTelefonoProveedor);
-		GPI.altaProveedor.add(GPI.lblAPNIFProveedor);
-		GPI.altaProveedor.add(GPI.txtAPNIFProveedor);
-		GPI.altaProveedor.add(GPI.btnAProvAceptar);
-		GPI.altaProveedor.add(GPI.btnAProvLimpiar);
-		GPI.altaProveedor.setLocationRelativeTo(null);
-		GPI.altaProveedor.setVisible(true);
-		GPI.txtAPNombreProveedor.selectAll();
-		GPI.txtAPNombreProveedor.setText("");
-		GPI.txtAPTelefonoProveedor.selectAll();
-		GPI.txtAPTelefonoProveedor.setText("");
-		GPI.txtAPNIFProveedor.selectAll();
-		GPI.txtAPNIFProveedor.setText("");
+		Vista.altaProveedor.setLayout(new FlowLayout());
+		Vista.altaProveedor.setSize(350, 170);
+		Vista.altaProveedor.setResizable(false);
+		Vista.altaProveedor.addWindowListener(this);
+		Vista.btnAProvAceptar.addActionListener(this);
+		Vista.btnAProvLimpiar.addActionListener(this);
+		Vista.altaProveedor.add(Vista.lblAPNombreProveedor);
+		Vista.altaProveedor.add(Vista.txtAPNombreProveedor);
+		Vista.altaProveedor.add(Vista.lblAPTelefonoProveedor);
+		Vista.altaProveedor.add(Vista.txtAPTelefonoProveedor);
+		Vista.altaProveedor.add(Vista.lblAPNIFProveedor);
+		Vista.altaProveedor.add(Vista.txtAPNIFProveedor);
+		Vista.altaProveedor.add(Vista.btnAProvAceptar);
+		Vista.altaProveedor.add(Vista.btnAProvLimpiar);
+		Vista.altaProveedor.setLocationRelativeTo(null);
+		Vista.altaProveedor.setVisible(true);
+		Vista.txtAPNombreProveedor.selectAll();
+		Vista.txtAPNombreProveedor.setText("");
+		Vista.txtAPTelefonoProveedor.selectAll();
+		Vista.txtAPTelefonoProveedor.setText("");
+		Vista.txtAPNIFProveedor.selectAll();
+		Vista.txtAPNIFProveedor.setText("");
 	}
 
 	public void actionPerformed(ActionEvent evento)
@@ -41,13 +41,13 @@ public class AltaProveedores extends WindowAdapter implements ActionListener
 
 		// Alta de proveedores
 
-		if(evento.getSource().equals(GPI.btnAProvAceptar)) 
+		if(evento.getSource().equals(Vista.btnAProvAceptar)) 
 		{
 			try
 			{
-				GPBD.ConexionBD();
-				GPBD.sentencia = "INSERT INTO proveedores (nombreProveedor,telefonoProveedor,nifProveedor) VALUES ('" + GPI.txtAPNombreProveedor.getText()+ "',"+ GPI.txtAPTelefonoProveedor.getText()+",'"+GPI.txtAPNIFProveedor.getText()+"')";
-				GPBD.statement.executeUpdate(GPBD.sentencia);
+				Modelo.ConexionBD();
+				Modelo.sentencia = "INSERT INTO proveedores (nombreProveedor,telefonoProveedor,nifProveedor) VALUES ('" + Vista.txtAPNombreProveedor.getText()+ "',"+ Vista.txtAPTelefonoProveedor.getText()+",'"+Vista.txtAPNIFProveedor.getText()+"')";
+				Modelo.statement.executeUpdate(Modelo.sentencia);
 			}
 
 			catch (SQLException sqle)
@@ -60,9 +60,9 @@ public class AltaProveedores extends WindowAdapter implements ActionListener
 				Log.registrarLog("Alta de proveedor realizada");
 				try
 				{
-					if(GPBD.connection!=null)
+					if(Modelo.connection!=null)
 					{
-						GPBD.connection.close();
+						Modelo.connection.close();
 					}
 				}
 				catch (SQLException e)
@@ -72,24 +72,24 @@ public class AltaProveedores extends WindowAdapter implements ActionListener
 			}
 
 		}
-		if(evento.getSource().equals(GPI.btnAProvLimpiar)) 
+		if(evento.getSource().equals(Vista.btnAProvLimpiar)) 
 		{
-			GPI.txtAPNombreProveedor.selectAll();
-			GPI.txtAPNombreProveedor.setText("");
-			GPI.txtAPTelefonoProveedor.selectAll();
-			GPI.txtAPTelefonoProveedor.setText("");
-			GPI.txtAPNIFProveedor.selectAll();
-			GPI.txtAPNIFProveedor.setText("");
-			GPI.txtAPNombreProveedor.requestFocus();
+			Vista.txtAPNombreProveedor.selectAll();
+			Vista.txtAPNombreProveedor.setText("");
+			Vista.txtAPTelefonoProveedor.selectAll();
+			Vista.txtAPTelefonoProveedor.setText("");
+			Vista.txtAPNIFProveedor.selectAll();
+			Vista.txtAPNIFProveedor.setText("");
+			Vista.txtAPNombreProveedor.requestFocus();
 		}
 
 	}
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.altaProveedor.isActive())
+		if(Vista.altaProveedor.isActive())
 		{
-			GPI.altaProveedor.setVisible(false);
+			Vista.altaProveedor.setVisible(false);
 		}
 	}
 }

@@ -19,18 +19,18 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 
 		try
 		{
-			int idProElegido = Integer.parseInt(GPI.choModificacionProveedor.getSelectedItem().split("-")[0]);
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM proveedores WHERE idProveedor="+idProElegido;
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			GPBD.rs.next();
+			int idProElegido = Integer.parseInt(Vista.choModificacionProveedor.getSelectedItem().split("-")[0]);
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM proveedores WHERE idProveedor="+idProElegido;
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			Modelo.rs.next();
 			//Le doy a los text field los valores extraidos del elemento seleccionado
-			nombreProveedor = GPBD.rs.getString("nombreProveedor");
-			GPI.txtMPNombreProveedor.setText(nombreProveedor);
-			telefonoProveedor = GPBD.rs.getString("telefonoProveedor");
-			GPI.txtMPTelefonoProveedor.setText(telefonoProveedor);
-			nifProveedor = GPBD.rs.getString("nifProveedor");
-			GPI.txtMPNIFProveedor.setText(nifProveedor);
+			nombreProveedor = Modelo.rs.getString("nombreProveedor");
+			Vista.txtMPNombreProveedor.setText(nombreProveedor);
+			telefonoProveedor = Modelo.rs.getString("telefonoProveedor");
+			Vista.txtMPTelefonoProveedor.setText(telefonoProveedor);
+			nifProveedor = Modelo.rs.getString("nifProveedor");
+			Vista.txtMPNIFProveedor.setText(nifProveedor);
 
 		}
 		catch (SQLException sqle)
@@ -41,9 +41,9 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -51,46 +51,46 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 				System.out.println("Error 3-"+e.getMessage());
 			}
 		}
-		GPI.modificacionProveedorConfirmacion.setLayout(new FlowLayout());
-		GPI.modificacionProveedorConfirmacion.setSize(350, 170);
-		GPI.modificacionProveedorConfirmacion.setResizable(false);
-		GPI.modificacionProveedorConfirmacion.addWindowListener(this);
-		GPI.btnMProvConfirmar.addActionListener(this);
-		GPI.btnMProvVolver.addActionListener(this);
-		GPI.modificacionProveedorConfirmacion.add(GPI.lblMPNombreProveedor);
-		GPI.modificacionProveedorConfirmacion.add(GPI.txtMPNombreProveedor);
-		GPI.modificacionProveedorConfirmacion.add(GPI.lblMPTelefonoProveedor);
-		GPI.modificacionProveedorConfirmacion.add(GPI.txtMPTelefonoProveedor);
-		GPI.modificacionProveedorConfirmacion.add(GPI.lblMPNIFProveedor);
-		GPI.modificacionProveedorConfirmacion.add(GPI.txtMPNIFProveedor);
-		GPI.modificacionProveedorConfirmacion.add(GPI.btnMProvConfirmar);
-		GPI.modificacionProveedorConfirmacion.add(GPI.btnMProvVolver);
-		GPI.modificacionProveedorConfirmacion.setLocationRelativeTo(null);
-		GPI.modificacionProveedorConfirmacion.setVisible(true);
+		Vista.modificacionProveedorConfirmacion.setLayout(new FlowLayout());
+		Vista.modificacionProveedorConfirmacion.setSize(350, 170);
+		Vista.modificacionProveedorConfirmacion.setResizable(false);
+		Vista.modificacionProveedorConfirmacion.addWindowListener(this);
+		Vista.btnMProvConfirmar.addActionListener(this);
+		Vista.btnMProvVolver.addActionListener(this);
+		Vista.modificacionProveedorConfirmacion.add(Vista.lblMPNombreProveedor);
+		Vista.modificacionProveedorConfirmacion.add(Vista.txtMPNombreProveedor);
+		Vista.modificacionProveedorConfirmacion.add(Vista.lblMPTelefonoProveedor);
+		Vista.modificacionProveedorConfirmacion.add(Vista.txtMPTelefonoProveedor);
+		Vista.modificacionProveedorConfirmacion.add(Vista.lblMPNIFProveedor);
+		Vista.modificacionProveedorConfirmacion.add(Vista.txtMPNIFProveedor);
+		Vista.modificacionProveedorConfirmacion.add(Vista.btnMProvConfirmar);
+		Vista.modificacionProveedorConfirmacion.add(Vista.btnMProvVolver);
+		Vista.modificacionProveedorConfirmacion.setLocationRelativeTo(null);
+		Vista.modificacionProveedorConfirmacion.setVisible(true);
 	}
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.modificacionProveedorConfirmacion.isActive())
+		if(Vista.modificacionProveedorConfirmacion.isActive())
 		{
-			GPI.modificacionProveedorConfirmacion.setVisible(false);
+			Vista.modificacionProveedorConfirmacion.setVisible(false);
 		}
 	}
 
 	public void actionPerformed(ActionEvent evento) 
 	{
-		if(evento.getSource().equals(GPI.btnMProvConfirmar))
+		if(evento.getSource().equals(Vista.btnMProvConfirmar))
 		{
 			try
 			{
-				int idProvElegido = Integer.parseInt(GPI.choModificacionProveedor.getSelectedItem().split("-")[0]);
-				String nombre = GPI.txtMPNombreProveedor.getText();
-				String telefono = GPI.txtMPTelefonoProveedor.getText();
-				String nif = GPI.txtMPNIFProveedor.getText();
+				int idProvElegido = Integer.parseInt(Vista.choModificacionProveedor.getSelectedItem().split("-")[0]);
+				String nombre = Vista.txtMPNombreProveedor.getText();
+				String telefono = Vista.txtMPTelefonoProveedor.getText();
+				String nif = Vista.txtMPNIFProveedor.getText();
 
-				GPBD.ConexionBD();
-				GPBD.sentencia = "UPDATE proveedores SET nombreProveedor = '"+nombre+"', telefonoProveedor = "+telefono+", nifProveedor = '"+nif+"' WHERE idProveedor="+idProvElegido;
-				GPBD.statement.executeUpdate(GPBD.sentencia);
+				Modelo.ConexionBD();
+				Modelo.sentencia = "UPDATE proveedores SET nombreProveedor = '"+nombre+"', telefonoProveedor = "+telefono+", nifProveedor = '"+nif+"' WHERE idProveedor="+idProvElegido;
+				Modelo.statement.executeUpdate(Modelo.sentencia);
 			}
 			catch (SQLException sqle)
 			{
@@ -101,9 +101,9 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 				Log.registrarLog("Modificacion de proveedor realizada");
 				try
 				{
-					if(GPBD.connection!=null)
+					if(Modelo.connection!=null)
 					{
-						GPBD.connection.close();
+						Modelo.connection.close();
 					}
 				}
 				catch (SQLException e)
@@ -112,9 +112,9 @@ public class ObtenerDatosModProv extends WindowAdapter implements ActionListener
 				}
 			}		
 		}
-		else if(evento.getSource().equals(GPI.btnMProvVolver))
+		else if(evento.getSource().equals(Vista.btnMProvVolver))
 		{
-			GPI.modificacionProveedorConfirmacion.setVisible(false);
+			Vista.modificacionProveedorConfirmacion.setVisible(false);
 		}
 
 	}

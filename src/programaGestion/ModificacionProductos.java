@@ -12,29 +12,29 @@ public class ModificacionProductos extends WindowAdapter implements ActionListen
 
 	ModificacionProductos()
 	{
-		GPI.modificacionProducto.setLayout(new FlowLayout());
-		GPI.modificacionProducto.setSize(600, 170);
-		GPI.modificacionProducto.setResizable(false);
-		GPI.modificacionProducto.addWindowListener(this);
-		GPI.btnMProdAceptar.addActionListener(this);
-		GPI.modificacionProducto.add(GPI.lblModificacionProducto);
-		GPI.modificacionProducto.add(GPI.choModificacionProducto);
-		GPI.modificacionProducto.add(GPI.btnMProdAceptar);
-		GPI.modificacionProducto.setLocationRelativeTo(null);
-		GPI.modificacionProducto.setVisible(true);
+		Vista.modificacionProducto.setLayout(new FlowLayout());
+		Vista.modificacionProducto.setSize(600, 170);
+		Vista.modificacionProducto.setResizable(false);
+		Vista.modificacionProducto.addWindowListener(this);
+		Vista.btnMProdAceptar.addActionListener(this);
+		Vista.modificacionProducto.add(Vista.lblModificacionProducto);
+		Vista.modificacionProducto.add(Vista.choModificacionProducto);
+		Vista.modificacionProducto.add(Vista.btnMProdAceptar);
+		Vista.modificacionProducto.setLocationRelativeTo(null);
+		Vista.modificacionProducto.setVisible(true);
 
 		//Sentencia para recopilar los datos e introducirlos en el choice
 		try
 		{
-			GPI.choModificacionProducto.removeAll();
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM productos";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			while(GPBD.rs.next())
+			Vista.choModificacionProducto.removeAll();
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM productos";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			while(Modelo.rs.next())
 			{
-				String poblarChoice = Integer.toString(GPBD.rs.getInt("idProducto"));
-				poblarChoice = poblarChoice + "-"+ GPBD.rs.getString("nombreProducto");
-				GPI.choModificacionProducto.add(poblarChoice);
+				String poblarChoice = Integer.toString(Modelo.rs.getInt("idProducto"));
+				poblarChoice = poblarChoice + "-"+ Modelo.rs.getString("nombreProducto");
+				Vista.choModificacionProducto.add(poblarChoice);
 			}
 		}
 		catch (SQLException sqle)
@@ -45,9 +45,9 @@ public class ModificacionProductos extends WindowAdapter implements ActionListen
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -59,7 +59,7 @@ public class ModificacionProductos extends WindowAdapter implements ActionListen
 
 	public void actionPerformed(ActionEvent evento)
 	{
-		if(evento.getSource().equals(GPI.btnMProdAceptar))
+		if(evento.getSource().equals(Vista.btnMProdAceptar))
 		{	
 			new ObtenerDatosModProd();
 		}
@@ -67,9 +67,9 @@ public class ModificacionProductos extends WindowAdapter implements ActionListen
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.modificacionProducto.isActive())
+		if(Vista.modificacionProducto.isActive())
 		{
-			GPI.modificacionProducto.setVisible(false);
+			Vista.modificacionProducto.setVisible(false);
 		}
 	}
 }

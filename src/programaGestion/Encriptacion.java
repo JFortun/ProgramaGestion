@@ -2,7 +2,7 @@ package programaGestion;
 
 import java.security.MessageDigest;
 
-public class GPCrypt {
+public class Encriptacion {
 
 	public static String getSHA256(String data)
 	{

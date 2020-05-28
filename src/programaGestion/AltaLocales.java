@@ -12,27 +12,27 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 
 	AltaLocales()
 	{
-		GPI.altaProveedor.setLayout(new FlowLayout());
-		GPI.altaProveedor.setSize(350, 130);
-		GPI.altaProveedor.setResizable(false);
-		GPI.altaProveedor.addWindowListener(this);
-		GPI.btnALAceptar.addActionListener(this);
-		GPI.btnALLimpiar.addActionListener(this);
-		GPI.altaProveedor.add(GPI.lblALDireccionLocal);
-		GPI.altaProveedor.add(GPI.txtALDireccionLocal);
-		GPI.altaProveedor.add(GPI.btnALAceptar);
-		GPI.altaProveedor.add(GPI.btnALLimpiar);
-		GPI.altaProveedor.setLocationRelativeTo(null);
-		GPI.altaProveedor.setVisible(true);
-		GPI.txtALDireccionLocal.selectAll();
-		GPI.txtALDireccionLocal.setText("");
+		Vista.altaProveedor.setLayout(new FlowLayout());
+		Vista.altaProveedor.setSize(350, 130);
+		Vista.altaProveedor.setResizable(false);
+		Vista.altaProveedor.addWindowListener(this);
+		Vista.btnALAceptar.addActionListener(this);
+		Vista.btnALLimpiar.addActionListener(this);
+		Vista.altaProveedor.add(Vista.lblALDireccionLocal);
+		Vista.altaProveedor.add(Vista.txtALDireccionLocal);
+		Vista.altaProveedor.add(Vista.btnALAceptar);
+		Vista.altaProveedor.add(Vista.btnALLimpiar);
+		Vista.altaProveedor.setLocationRelativeTo(null);
+		Vista.altaProveedor.setVisible(true);
+		Vista.txtALDireccionLocal.selectAll();
+		Vista.txtALDireccionLocal.setText("");
 	}
 	
 	public void windowClosing(WindowEvent arg0) //Averiguar porqué no funciona
 	{
-		if(GPI.altaLocal.isActive())
+		if(Vista.altaLocal.isActive())
 		{
-			GPI.altaLocal.setVisible(false);
+			Vista.altaLocal.setVisible(false);
 		}
 	}
 	
@@ -41,13 +41,13 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 
 		// Alta de proveedores
 
-		if(evento.getSource().equals(GPI.btnALAceptar)) 
+		if(evento.getSource().equals(Vista.btnALAceptar)) 
 		{
 			try
 			{
-				GPBD.ConexionBD();
-				GPBD.sentencia = "INSERT INTO locales (direccionLocal) VALUES ('"+GPI.txtALDireccionLocal.getText()+"')";
-				GPBD.statement.executeUpdate(GPBD.sentencia);
+				Modelo.ConexionBD();
+				Modelo.sentencia = "INSERT INTO locales (direccionLocal) VALUES ('"+Vista.txtALDireccionLocal.getText()+"')";
+				Modelo.statement.executeUpdate(Modelo.sentencia);
 			}
 
 			catch (SQLException sqle)
@@ -60,9 +60,9 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 				Log.registrarLog("Alta de local realizada");
 				try
 				{
-					if(GPBD.connection!=null)
+					if(Modelo.connection!=null)
 					{
-						GPBD.connection.close();
+						Modelo.connection.close();
 					}
 				}
 				catch (SQLException e)
@@ -72,11 +72,11 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 			}
 
 		}
-		if(evento.getSource().equals(GPI.btnALLimpiar)) 
+		if(evento.getSource().equals(Vista.btnALLimpiar)) 
 		{
-			GPI.txtALDireccionLocal.selectAll();
-			GPI.txtALDireccionLocal.setText("");
-			GPI.txtALDireccionLocal.requestFocus();
+			Vista.txtALDireccionLocal.selectAll();
+			Vista.txtALDireccionLocal.setText("");
+			Vista.txtALDireccionLocal.requestFocus();
 		}
 	}
 }

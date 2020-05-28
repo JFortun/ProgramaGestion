@@ -25,41 +25,41 @@ public class ConsultaProveedores extends WindowAdapter implements ActionListener
 
 	ConsultaProveedores()
 	{
-		GPI.consultaProveedor.setLayout(new FlowLayout());
-		GPI.consultaProveedor.setSize(550, 300);
-		GPI.consultaProveedor.setResizable(false);
-		GPI.consultaProveedor.addWindowListener(this);
-		GPI.btnCProvExportarPDF.addActionListener(this);
-		GPI.consultaProveedor.add(GPI.lblConsultaProveedor);
-		GPI.consultaProveedor.add(GPI.taConsultaProveedor);
-		GPI.consultaProveedor.add(GPI.btnCProvExportarPDF);
-		GPI.taConsultaProveedor.setEditable(false);
-		GPI.consultaProveedor.setLocationRelativeTo(null);
-		GPI.consultaProveedor.setVisible(true);
+		Vista.consultaProveedor.setLayout(new FlowLayout());
+		Vista.consultaProveedor.setSize(550, 300);
+		Vista.consultaProveedor.setResizable(false);
+		Vista.consultaProveedor.addWindowListener(this);
+		Vista.btnCProvExportarPDF.addActionListener(this);
+		Vista.consultaProveedor.add(Vista.lblConsultaProveedor);
+		Vista.consultaProveedor.add(Vista.taConsultaProveedor);
+		Vista.consultaProveedor.add(Vista.btnCProvExportarPDF);
+		Vista.taConsultaProveedor.setEditable(false);
+		Vista.consultaProveedor.setLocationRelativeTo(null);
+		Vista.consultaProveedor.setVisible(true);
 
 		try	//Sentencia para recopilar los datos e introducirlos en el text area
 
 		{
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM proveedores";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			GPI.taConsultaProveedor.setText("");
-			while(GPBD.rs.next())
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM proveedores";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			Vista.taConsultaProveedor.setText("");
+			while(Modelo.rs.next())
 			{
-				if(GPI.taConsultaProveedor.getText().length()==0)
+				if(Vista.taConsultaProveedor.getText().length()==0)
 				{
-					GPI.taConsultaProveedor.setText(GPBD.rs.getInt("idProveedor")+
-							"-"+GPBD.rs.getString("nombreProveedor")+
-							", "+GPBD.rs.getString("telefonoProveedor")+
-							", "+GPBD.rs.getString("nifProveedor"));
+					Vista.taConsultaProveedor.setText(Modelo.rs.getInt("idProveedor")+
+							"-"+Modelo.rs.getString("nombreProveedor")+
+							", "+Modelo.rs.getString("telefonoProveedor")+
+							", "+Modelo.rs.getString("nifProveedor"));
 				}
 				else
 				{
-					GPI.taConsultaProveedor.setText(GPI.taConsultaProveedor.getText() + "\n" +
-							GPBD.rs.getInt("idProveedor")+
-							"-"+GPBD.rs.getString("nombreProveedor")+
-							", "+GPBD.rs.getString("telefonoProveedor")+
-							", "+GPBD.rs.getString("nifProveedor"));
+					Vista.taConsultaProveedor.setText(Vista.taConsultaProveedor.getText() + "\n" +
+							Modelo.rs.getInt("idProveedor")+
+							"-"+Modelo.rs.getString("nombreProveedor")+
+							", "+Modelo.rs.getString("telefonoProveedor")+
+							", "+Modelo.rs.getString("nifProveedor"));
 				}
 			}
 		}
@@ -72,9 +72,9 @@ public class ConsultaProveedores extends WindowAdapter implements ActionListener
 			Log.registrarLog("Consulta de proveedor realizada");
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -86,16 +86,16 @@ public class ConsultaProveedores extends WindowAdapter implements ActionListener
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.consultaProveedor.isActive())
+		if(Vista.consultaProveedor.isActive())
 		{
-			GPI.consultaProveedor.setVisible(false);
+			Vista.consultaProveedor.setVisible(false);
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evento) 
 	{
-		if(evento.getSource().equals(GPI.btnCProvExportarPDF)) 
+		if(evento.getSource().equals(Vista.btnCProvExportarPDF)) 
 		{
 			// Se crea el documento 
 			Document documento = new Document();
@@ -105,16 +105,16 @@ public class ConsultaProveedores extends WindowAdapter implements ActionListener
 				try	//Sentencia para recopilar los datos e introducirlos en la variable
 
 				{
-					GPBD.ConexionBD();
-					GPBD.sentencia = "SELECT * FROM proveedores";
-					GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-					GPI.taConsultaProducto.setText("");
-					while(GPBD.rs.next())
+					Modelo.ConexionBD();
+					Modelo.sentencia = "SELECT * FROM proveedores";
+					Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+					Vista.taConsultaProducto.setText("");
+					while(Modelo.rs.next())
 					{
-						resultado = resultado + GPBD.rs.getInt("idProveedor")+
-								"-"+GPBD.rs.getString("nombreProveedor")+
-								"-"+GPBD.rs.getString("telefonoProveedor")+
-								"-"+GPBD.rs.getString("nifProveedor")+"\n";
+						resultado = resultado + Modelo.rs.getInt("idProveedor")+
+								"-"+Modelo.rs.getString("nombreProveedor")+
+								"-"+Modelo.rs.getString("telefonoProveedor")+
+								"-"+Modelo.rs.getString("nifProveedor")+"\n";
 					}
 
 				}
@@ -126,9 +126,9 @@ public class ConsultaProveedores extends WindowAdapter implements ActionListener
 				{
 					try
 					{
-						if(GPBD.connection!=null)
+						if(Modelo.connection!=null)
 						{
-							GPBD.connection.close();
+							Modelo.connection.close();
 						}
 					}
 					catch (SQLException e)

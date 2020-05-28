@@ -12,29 +12,29 @@ public class ModificacionProveedores extends WindowAdapter implements ActionList
 
 	ModificacionProveedores()
 	{
-		GPI.modificacionProveedor.setLayout(new FlowLayout());
-		GPI.modificacionProveedor.setSize(600, 170);
-		GPI.modificacionProveedor.setResizable(false);
-		GPI.modificacionProveedor.addWindowListener(this);
-		GPI.btnMProvAceptar.addActionListener(this);
-		GPI.modificacionProveedor.add(GPI.lblModificacionProveedor);
-		GPI.modificacionProveedor.add(GPI.choModificacionProveedor);
-		GPI.modificacionProveedor.add(GPI.btnMProvAceptar);
-		GPI.modificacionProveedor.setLocationRelativeTo(null);
-		GPI.modificacionProveedor.setVisible(true);
+		Vista.modificacionProveedor.setLayout(new FlowLayout());
+		Vista.modificacionProveedor.setSize(600, 170);
+		Vista.modificacionProveedor.setResizable(false);
+		Vista.modificacionProveedor.addWindowListener(this);
+		Vista.btnMProvAceptar.addActionListener(this);
+		Vista.modificacionProveedor.add(Vista.lblModificacionProveedor);
+		Vista.modificacionProveedor.add(Vista.choModificacionProveedor);
+		Vista.modificacionProveedor.add(Vista.btnMProvAceptar);
+		Vista.modificacionProveedor.setLocationRelativeTo(null);
+		Vista.modificacionProveedor.setVisible(true);
 
 		//Sentencia para recopilar los datos e introducirlos en el choice
 		try
 		{
-			GPI.choModificacionProveedor.removeAll();
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM proveedores";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			while(GPBD.rs.next())
+			Vista.choModificacionProveedor.removeAll();
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM proveedores";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			while(Modelo.rs.next())
 			{
-				String poblarChoice = Integer.toString(GPBD.rs.getInt("idProveedor"));
-				poblarChoice = poblarChoice + "-"+ GPBD.rs.getString("nombreProveedor");
-				GPI.choModificacionProveedor.add(poblarChoice);
+				String poblarChoice = Integer.toString(Modelo.rs.getInt("idProveedor"));
+				poblarChoice = poblarChoice + "-"+ Modelo.rs.getString("nombreProveedor");
+				Vista.choModificacionProveedor.add(poblarChoice);
 			}
 		}
 		catch (SQLException sqle)
@@ -45,9 +45,9 @@ public class ModificacionProveedores extends WindowAdapter implements ActionList
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -59,7 +59,7 @@ public class ModificacionProveedores extends WindowAdapter implements ActionList
 
 	public void actionPerformed(ActionEvent evento)
 	{
-		if(evento.getSource().equals(GPI.btnMProvAceptar))
+		if(evento.getSource().equals(Vista.btnMProvAceptar))
 		{	
 			new ObtenerDatosModProv();
 		}
@@ -67,9 +67,9 @@ public class ModificacionProveedores extends WindowAdapter implements ActionList
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.modificacionProveedor.isActive())
+		if(Vista.modificacionProveedor.isActive())
 		{
-			GPI.modificacionProveedor.setVisible(false);
+			Vista.modificacionProveedor.setVisible(false);
 		}
 	}
 }

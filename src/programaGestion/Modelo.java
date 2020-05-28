@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class GPBD {
+public class Modelo {
 
 	// Conexión a la base de datos
-	static String driver = "com.mysql.jdbc.Driver";
+	static String driver = "com.mysql.cj.jdbc.Driver";
 	static String url = "jdbc:mysql://localhost:3306/pasteleria?useSSL=false";
 	static String usuario = "root";
 	static String clave = "15935784265";

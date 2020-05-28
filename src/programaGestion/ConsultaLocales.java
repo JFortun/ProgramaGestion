@@ -25,36 +25,36 @@ public class ConsultaLocales extends WindowAdapter implements ActionListener
 
 	ConsultaLocales()
 	{
-		GPI.consultaLocal.setLayout(new FlowLayout());
-		GPI.consultaLocal.setSize(550, 300);
-		GPI.consultaLocal.setResizable(false);
-		GPI.consultaLocal.addWindowListener(this);
-		GPI.btnCLExportarPDF.addActionListener(this);
-		GPI.consultaLocal.add(GPI.lblConsultaLocal);
-		GPI.consultaLocal.add(GPI.taConsultaLocal);
-		GPI.consultaLocal.add(GPI.btnCLExportarPDF);
-		GPI.taConsultaLocal.setEditable(false);
-		GPI.consultaLocal.setLocationRelativeTo(null);
-		GPI.consultaLocal.setVisible(true);
+		Vista.consultaLocal.setLayout(new FlowLayout());
+		Vista.consultaLocal.setSize(550, 300);
+		Vista.consultaLocal.setResizable(false);
+		Vista.consultaLocal.addWindowListener(this);
+		Vista.btnCLExportarPDF.addActionListener(this);
+		Vista.consultaLocal.add(Vista.lblConsultaLocal);
+		Vista.consultaLocal.add(Vista.taConsultaLocal);
+		Vista.consultaLocal.add(Vista.btnCLExportarPDF);
+		Vista.taConsultaLocal.setEditable(false);
+		Vista.consultaLocal.setLocationRelativeTo(null);
+		Vista.consultaLocal.setVisible(true);
 
 		try	//Sentencia para recopilar los datos e introducirlos en el text area
 		{
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM locales";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			GPI.taConsultaLocal.setText("");
-			while(GPBD.rs.next())
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM locales";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			Vista.taConsultaLocal.setText("");
+			while(Modelo.rs.next())
 			{
-				if(GPI.taConsultaLocal.getText().length()==0)
+				if(Vista.taConsultaLocal.getText().length()==0)
 				{
-					GPI.taConsultaLocal.setText(GPBD.rs.getInt("idLocal")+
-							", "+GPBD.rs.getString("direccionLocal"));
+					Vista.taConsultaLocal.setText(Modelo.rs.getInt("idLocal")+
+							", "+Modelo.rs.getString("direccionLocal"));
 				}
 				else
 				{
-					GPI.taConsultaProveedor.setText(GPI.taConsultaLocal.getText() + "\n" +
-							GPBD.rs.getInt("idLocal")+
-							", "+GPBD.rs.getString("direccionLocal"));
+					Vista.taConsultaProveedor.setText(Vista.taConsultaLocal.getText() + "\n" +
+							Modelo.rs.getInt("idLocal")+
+							", "+Modelo.rs.getString("direccionLocal"));
 				}
 			}
 		}
@@ -67,9 +67,9 @@ public class ConsultaLocales extends WindowAdapter implements ActionListener
 			Log.registrarLog("Consulta de local realizada");
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -81,16 +81,16 @@ public class ConsultaLocales extends WindowAdapter implements ActionListener
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.consultaLocal.isActive())
+		if(Vista.consultaLocal.isActive())
 		{
-			GPI.consultaLocal.setVisible(false);
+			Vista.consultaLocal.setVisible(false);
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evento) 
 	{
-		if(evento.getSource().equals(GPI.btnCLExportarPDF)) 
+		if(evento.getSource().equals(Vista.btnCLExportarPDF)) 
 		{
 			// Se crea el documento 
 			Document documento = new Document();
@@ -100,14 +100,14 @@ public class ConsultaLocales extends WindowAdapter implements ActionListener
 				try	//Sentencia para recopilar los datos e introducirlos en la variable
 
 				{
-					GPBD.ConexionBD();
-					GPBD.sentencia = "SELECT * FROM locales";
-					GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-					GPI.taConsultaProducto.setText("");
-					while(GPBD.rs.next())
+					Modelo.ConexionBD();
+					Modelo.sentencia = "SELECT * FROM locales";
+					Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+					Vista.taConsultaProducto.setText("");
+					while(Modelo.rs.next())
 					{
-						resultado = resultado + GPBD.rs.getInt("idLocal")+
-								"-"+GPBD.rs.getString("direccionLocal")+"\n";
+						resultado = resultado + Modelo.rs.getInt("idLocal")+
+								"-"+Modelo.rs.getString("direccionLocal")+"\n";
 					}
 
 				}
@@ -119,9 +119,9 @@ public class ConsultaLocales extends WindowAdapter implements ActionListener
 				{
 					try
 					{
-						if(GPBD.connection!=null)
+						if(Modelo.connection!=null)
 						{
-							GPBD.connection.close();
+							Modelo.connection.close();
 						}
 					}
 					catch (SQLException e)

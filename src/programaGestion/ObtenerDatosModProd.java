@@ -21,20 +21,20 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 
 		try
 		{
-			int idProdElegido = Integer.parseInt(GPI.choModificacionProducto.getSelectedItem().split("-")[0]);
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM productos WHERE idProducto="+idProdElegido;
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			GPBD.rs.next();
+			int idProdElegido = Integer.parseInt(Vista.choModificacionProducto.getSelectedItem().split("-")[0]);
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM productos WHERE idProducto="+idProdElegido;
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			Modelo.rs.next();
 			//Le doy a los text field los valores extraidos del elemento seleccionado
-			nombreProducto = GPBD.rs.getString("nombreProducto");
-			GPI.txtMPNombreProducto.setText(nombreProducto);
-			precioProducto = GPBD.rs.getString("precioProducto");
-			GPI.txtMPPrecioProducto.setText(precioProducto);
-			stockProducto = GPBD.rs.getString("stockProducto");
-			GPI.txtMPStockProducto.setText(stockProducto);
-			descripcionProducto = GPBD.rs.getString("descripcionProducto");
-			GPI.taMPDescripcionProducto.setText(descripcionProducto);
+			nombreProducto = Modelo.rs.getString("nombreProducto");
+			Vista.txtMPNombreProducto.setText(nombreProducto);
+			precioProducto = Modelo.rs.getString("precioProducto");
+			Vista.txtMPPrecioProducto.setText(precioProducto);
+			stockProducto = Modelo.rs.getString("stockProducto");
+			Vista.txtMPStockProducto.setText(stockProducto);
+			descripcionProducto = Modelo.rs.getString("descripcionProducto");
+			Vista.taMPDescripcionProducto.setText(descripcionProducto);
 
 		}
 		catch (SQLException sqle)
@@ -45,9 +45,9 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -59,16 +59,16 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 		//Sentencia para recopilar los datos e introducirlos en el choice
 		try
 		{	
-			GPI.choMPProveedorProducto.removeAll();
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM proveedores";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
+			Vista.choMPProveedorProducto.removeAll();
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM proveedores";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
 
-			while(GPBD.rs.next())
+			while(Modelo.rs.next())
 			{
-				String poblarChoice = Integer.toString(GPBD.rs.getInt("idProveedor"));
-				poblarChoice = poblarChoice + "-"+ GPBD.rs.getString("nombreProveedor");
-				GPI.choMPProveedorProducto.add(poblarChoice);
+				String poblarChoice = Integer.toString(Modelo.rs.getInt("idProveedor"));
+				poblarChoice = poblarChoice + "-"+ Modelo.rs.getString("nombreProveedor");
+				Vista.choMPProveedorProducto.add(poblarChoice);
 			}
 		}
 		catch (SQLException sqle)
@@ -79,9 +79,9 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -89,53 +89,53 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 				System.out.println("Error 3-"+e.getMessage());
 			}
 		}
-		GPI.modificacionProductoConfirmacion.setLayout(new FlowLayout());
-		GPI.modificacionProductoConfirmacion.setSize(325, 300);
-		GPI.modificacionProductoConfirmacion.setResizable(false);
-		GPI.modificacionProductoConfirmacion.addWindowListener(this);
-		GPI.btnMProdConfirmar.addActionListener(this);
-		GPI.btnMProdVolver.addActionListener(this);
-		GPI.modificacionProductoConfirmacion.add(GPI.lblMPNombreProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.txtMPNombreProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.lblMPPrecioProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.txtMPPrecioProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.lblMPStockProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.txtMPStockProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.lblMPDescripcionProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.taMPDescripcionProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.lblMPProveedorProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.choMPProveedorProducto);
-		GPI.modificacionProductoConfirmacion.add(GPI.btnMProdConfirmar);
-		GPI.modificacionProductoConfirmacion.add(GPI.btnMProdVolver);
-		GPI.modificacionProductoConfirmacion.setLocationRelativeTo(null);
-		GPI.modificacionProductoConfirmacion.setVisible(true);
+		Vista.modificacionProductoConfirmacion.setLayout(new FlowLayout());
+		Vista.modificacionProductoConfirmacion.setSize(325, 300);
+		Vista.modificacionProductoConfirmacion.setResizable(false);
+		Vista.modificacionProductoConfirmacion.addWindowListener(this);
+		Vista.btnMProdConfirmar.addActionListener(this);
+		Vista.btnMProdVolver.addActionListener(this);
+		Vista.modificacionProductoConfirmacion.add(Vista.lblMPNombreProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.txtMPNombreProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.lblMPPrecioProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.txtMPPrecioProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.lblMPStockProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.txtMPStockProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.lblMPDescripcionProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.taMPDescripcionProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.lblMPProveedorProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.choMPProveedorProducto);
+		Vista.modificacionProductoConfirmacion.add(Vista.btnMProdConfirmar);
+		Vista.modificacionProductoConfirmacion.add(Vista.btnMProdVolver);
+		Vista.modificacionProductoConfirmacion.setLocationRelativeTo(null);
+		Vista.modificacionProductoConfirmacion.setVisible(true);
 	}
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.modificacionProductoConfirmacion.isActive())
+		if(Vista.modificacionProductoConfirmacion.isActive())
 		{
-			GPI.modificacionProductoConfirmacion.setVisible(false);
+			Vista.modificacionProductoConfirmacion.setVisible(false);
 		}
 	}
 
 	public void actionPerformed(ActionEvent evento) 
 	{
-		if(evento.getSource().equals(GPI.btnMProdConfirmar))
+		if(evento.getSource().equals(Vista.btnMProdConfirmar))
 		{
 			try
 			{
-				int idProdElegido = Integer.parseInt(GPI.choModificacionProducto.getSelectedItem().split("-")[0]);
-				String[] PSeleccionado=GPI.choMPProveedorProducto.getSelectedItem().split("-");
+				int idProdElegido = Integer.parseInt(Vista.choModificacionProducto.getSelectedItem().split("-")[0]);
+				String[] PSeleccionado=Vista.choMPProveedorProducto.getSelectedItem().split("-");
 				String proveedorProducto = PSeleccionado[0];
-				String nombre = GPI.txtMPNombreProducto.getText();
-				String precio = GPI.txtMPPrecioProducto.getText();
-				String stock = GPI.txtMPStockProducto.getText();
-				String descripcion = GPI.taMPDescripcionProducto.getText();
+				String nombre = Vista.txtMPNombreProducto.getText();
+				String precio = Vista.txtMPPrecioProducto.getText();
+				String stock = Vista.txtMPStockProducto.getText();
+				String descripcion = Vista.taMPDescripcionProducto.getText();
 
-				GPBD.ConexionBD();
-				GPBD.sentencia = "UPDATE productos SET nombreProducto = '"+nombre+"', descripcionProducto = '"+descripcion+"', stockProducto = "+stock+", precioProducto = "+precio+", idProveedorFK = "+proveedorProducto+" WHERE idProducto="+idProdElegido;
-				GPBD.statement.executeUpdate(GPBD.sentencia);
+				Modelo.ConexionBD();
+				Modelo.sentencia = "UPDATE productos SET nombreProducto = '"+nombre+"', descripcionProducto = '"+descripcion+"', stockProducto = "+stock+", precioProducto = "+precio+", idProveedorFK = "+proveedorProducto+" WHERE idProducto="+idProdElegido;
+				Modelo.statement.executeUpdate(Modelo.sentencia);
 			}
 			catch (SQLException sqle)
 			{
@@ -146,9 +146,9 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 				Log.registrarLog("Modificación de producto realizada");
 				try
 				{
-					if(GPBD.connection!=null)
+					if(Modelo.connection!=null)
 					{
-						GPBD.connection.close();
+						Modelo.connection.close();
 					}
 				}
 				catch (SQLException e)
@@ -157,9 +157,9 @@ public class ObtenerDatosModProd extends WindowAdapter implements ActionListener
 				}
 			}		
 		}
-		else if(evento.getSource().equals(GPI.btnMProdVolver))
+		else if(evento.getSource().equals(Vista.btnMProdVolver))
 		{
-			GPI.modificacionProductoConfirmacion.setVisible(false);
+			Vista.modificacionProductoConfirmacion.setVisible(false);
 		}
 
 	}

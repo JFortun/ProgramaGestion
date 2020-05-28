@@ -16,7 +16,7 @@ public class Log
 		try
 		{
 			String usuario = "";
-			if(GPF.tipoUsuario == 1)
+			if(Controlador.tipoUsuario == 1)
 			{
 				usuario = "Administrador";
 			}

@@ -15,16 +15,16 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 		//Sentencia para recopilar los datos e introducirlos en el choice
 		try
 		{	
-			GPI.choAPProveedorProducto.removeAll();
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM proveedores";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
+			Vista.choAPProveedorProducto.removeAll();
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM proveedores";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
 
-			while(GPBD.rs.next())
+			while(Modelo.rs.next())
 			{
-				String poblarChoice = Integer.toString(GPBD.rs.getInt("idProveedor"));
-				poblarChoice = poblarChoice + "-"+ GPBD.rs.getString("nombreProveedor");
-				GPI.choAPProveedorProducto.add(poblarChoice);
+				String poblarChoice = Integer.toString(Modelo.rs.getInt("idProveedor"));
+				poblarChoice = poblarChoice + "-"+ Modelo.rs.getString("nombreProveedor");
+				Vista.choAPProveedorProducto.add(poblarChoice);
 			}
 		}
 		catch (SQLException sqle)
@@ -35,9 +35,9 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 		{
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -45,32 +45,32 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 				System.out.println("Error 3-"+e.getMessage());
 			}
 		}
-		GPI.altaProducto.setLayout(new FlowLayout());
-		GPI.altaProducto.setSize(325, 300);
-		GPI.altaProducto.setResizable(false);
-		GPI.altaProducto.addWindowListener(this);
-		GPI.btnAProdAceptar.addActionListener(this);
-		GPI.btnAProdLimpiar.addActionListener(this);
-		GPI.altaProducto.add(GPI.lblAPNombreProducto);
-		GPI.altaProducto.add(GPI.txtAPNombreProducto);
-		GPI.altaProducto.add(GPI.lblAPPrecioProducto);
-		GPI.altaProducto.add(GPI.txtAPPrecioProducto);
-		GPI.altaProducto.add(GPI.lblAPStockProducto);
-		GPI.altaProducto.add(GPI.txtAPStockProducto);
-		GPI.altaProducto.add(GPI.lblAPDescripcionProducto);
-		GPI.altaProducto.add(GPI.taAPDescripcionProducto);
-		GPI.altaProducto.add(GPI.lblAPProveedorProducto);
-		GPI.altaProducto.add(GPI.choAPProveedorProducto);
-		GPI.altaProducto.add(GPI.btnAProdAceptar);
-		GPI.altaProducto.add(GPI.btnAProdLimpiar);
-		GPI.altaProducto.setLocationRelativeTo(null);
-		GPI.altaProducto.setVisible(true);
-		GPI.txtAPNombreProducto.selectAll();
-		GPI.txtAPNombreProducto.setText("");
-		GPI.txtAPPrecioProducto.selectAll();
-		GPI.txtAPPrecioProducto.setText("");
-		GPI.txtAPStockProducto.selectAll();
-		GPI.txtAPStockProducto.setText("");		
+		Vista.altaProducto.setLayout(new FlowLayout());
+		Vista.altaProducto.setSize(325, 300);
+		Vista.altaProducto.setResizable(false);
+		Vista.altaProducto.addWindowListener(this);
+		Vista.btnAProdAceptar.addActionListener(this);
+		Vista.btnAProdLimpiar.addActionListener(this);
+		Vista.altaProducto.add(Vista.lblAPNombreProducto);
+		Vista.altaProducto.add(Vista.txtAPNombreProducto);
+		Vista.altaProducto.add(Vista.lblAPPrecioProducto);
+		Vista.altaProducto.add(Vista.txtAPPrecioProducto);
+		Vista.altaProducto.add(Vista.lblAPStockProducto);
+		Vista.altaProducto.add(Vista.txtAPStockProducto);
+		Vista.altaProducto.add(Vista.lblAPDescripcionProducto);
+		Vista.altaProducto.add(Vista.taAPDescripcionProducto);
+		Vista.altaProducto.add(Vista.lblAPProveedorProducto);
+		Vista.altaProducto.add(Vista.choAPProveedorProducto);
+		Vista.altaProducto.add(Vista.btnAProdAceptar);
+		Vista.altaProducto.add(Vista.btnAProdLimpiar);
+		Vista.altaProducto.setLocationRelativeTo(null);
+		Vista.altaProducto.setVisible(true);
+		Vista.txtAPNombreProducto.selectAll();
+		Vista.txtAPNombreProducto.setText("");
+		Vista.txtAPPrecioProducto.selectAll();
+		Vista.txtAPPrecioProducto.setText("");
+		Vista.txtAPStockProducto.selectAll();
+		Vista.txtAPStockProducto.setText("");		
 	}
 
 	public void actionPerformed(ActionEvent evento)
@@ -78,15 +78,15 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 
 		// Alta de proveedores
 
-		if(evento.getSource().equals(GPI.btnAProdAceptar)) 
+		if(evento.getSource().equals(Vista.btnAProdAceptar)) 
 		{
 			try
 			{
-				String[] PSeleccionado=GPI.choAPProveedorProducto.getSelectedItem().split("-");
+				String[] PSeleccionado=Vista.choAPProveedorProducto.getSelectedItem().split("-");
 				String ProveedorProducto = PSeleccionado[0];
-				GPBD.ConexionBD();
-				GPBD.sentencia = "INSERT INTO productos (nombreProducto,descripcionProducto,stockProducto,precioProducto,idProveedorFK) VALUES ('" + GPI.txtAPNombreProducto.getText()+ "','" + GPI.taAPDescripcionProducto.getText()+ "',"+ GPI.txtAPStockProducto.getText()+","+ GPI.txtAPPrecioProducto.getText()+",'"+ProveedorProducto+"')";
-				GPBD.statement.executeUpdate(GPBD.sentencia);
+				Modelo.ConexionBD();
+				Modelo.sentencia = "INSERT INTO productos (nombreProducto,descripcionProducto,stockProducto,precioProducto,idProveedorFK) VALUES ('" + Vista.txtAPNombreProducto.getText()+ "','" + Vista.taAPDescripcionProducto.getText()+ "',"+ Vista.txtAPStockProducto.getText()+","+ Vista.txtAPPrecioProducto.getText()+",'"+ProveedorProducto+"')";
+				Modelo.statement.executeUpdate(Modelo.sentencia);
 			}
 
 			catch (SQLException sqle)
@@ -99,9 +99,9 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 				Log.registrarLog("Alta de producto realizada");
 				try
 				{
-					if(GPBD.connection!=null)
+					if(Modelo.connection!=null)
 					{
-						GPBD.connection.close();
+						Modelo.connection.close();
 					}
 				}
 				catch (SQLException e)
@@ -111,26 +111,26 @@ public class AltaProductos extends WindowAdapter implements ActionListener
 			}
 
 		}
-		if(evento.getSource().equals(GPI.btnAProdLimpiar)) 
+		if(evento.getSource().equals(Vista.btnAProdLimpiar)) 
 		{
-			GPI.txtAPNombreProducto.selectAll();
-			GPI.txtAPNombreProducto.setText("");
-			GPI.txtAPPrecioProducto.selectAll();
-			GPI.txtAPPrecioProducto.setText("");
-			GPI.txtAPStockProducto.selectAll();
-			GPI.txtAPStockProducto.setText("");
-			GPI.taAPDescripcionProducto.selectAll();
-			GPI.taAPDescripcionProducto.setText("");
-			GPI.txtAPNombreProveedor.requestFocus();
+			Vista.txtAPNombreProducto.selectAll();
+			Vista.txtAPNombreProducto.setText("");
+			Vista.txtAPPrecioProducto.selectAll();
+			Vista.txtAPPrecioProducto.setText("");
+			Vista.txtAPStockProducto.selectAll();
+			Vista.txtAPStockProducto.setText("");
+			Vista.taAPDescripcionProducto.selectAll();
+			Vista.taAPDescripcionProducto.setText("");
+			Vista.txtAPNombreProveedor.requestFocus();
 		}
 
 	}
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.altaProducto.isActive())
+		if(Vista.altaProducto.isActive())
 		{
-			GPI.altaProducto.setVisible(false);
+			Vista.altaProducto.setVisible(false);
 		}
 	}
 }

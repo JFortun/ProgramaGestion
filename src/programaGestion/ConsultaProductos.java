@@ -25,43 +25,43 @@ public class ConsultaProductos extends WindowAdapter implements ActionListener
 
 	ConsultaProductos()
 	{
-		GPI.consultaProducto.setLayout(new FlowLayout());
-		GPI.consultaProducto.setSize(550, 300);
-		GPI.consultaProducto.setResizable(false);
-		GPI.consultaProducto.addWindowListener(this);
-		GPI.btnCProdExportarPDF.addActionListener(this);
-		GPI.consultaProducto.add(GPI.lblConsultaProducto);
-		GPI.consultaProducto.add(GPI.taConsultaProducto);
-		GPI.consultaProducto.add(GPI.btnCProdExportarPDF);
-		GPI.taConsultaProducto.setEditable(false);
-		GPI.consultaProducto.setLocationRelativeTo(null);
-		GPI.consultaProducto.setVisible(true);
+		Vista.consultaProducto.setLayout(new FlowLayout());
+		Vista.consultaProducto.setSize(550, 300);
+		Vista.consultaProducto.setResizable(false);
+		Vista.consultaProducto.addWindowListener(this);
+		Vista.btnCProdExportarPDF.addActionListener(this);
+		Vista.consultaProducto.add(Vista.lblConsultaProducto);
+		Vista.consultaProducto.add(Vista.taConsultaProducto);
+		Vista.consultaProducto.add(Vista.btnCProdExportarPDF);
+		Vista.taConsultaProducto.setEditable(false);
+		Vista.consultaProducto.setLocationRelativeTo(null);
+		Vista.consultaProducto.setVisible(true);
 
 		try	//Sentencia para recopilar los datos e introducirlos en el text area
 
 		{
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM productos";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			GPI.taConsultaProducto.setText("");
-			while(GPBD.rs.next())
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM productos";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			Vista.taConsultaProducto.setText("");
+			while(Modelo.rs.next())
 			{
-				if(GPI.taConsultaProducto.getText().length()==0)
+				if(Vista.taConsultaProducto.getText().length()==0)
 				{
-					GPI.taConsultaProducto.setText(GPBD.rs.getInt("idProducto")+
-							"-"+GPBD.rs.getString("nombreProducto")+
-							", "+GPBD.rs.getString("precioProducto")+
-							", "+GPBD.rs.getString("stockProducto")+
-							", "+GPBD.rs.getString("idProveedorFK"));
+					Vista.taConsultaProducto.setText(Modelo.rs.getInt("idProducto")+
+							"-"+Modelo.rs.getString("nombreProducto")+
+							", "+Modelo.rs.getString("precioProducto")+
+							", "+Modelo.rs.getString("stockProducto")+
+							", "+Modelo.rs.getString("idProveedorFK"));
 				}
 				else
 				{
-					GPI.taConsultaProducto.setText(GPI.taConsultaProducto.getText() + "\n" +
-							GPBD.rs.getInt("idProducto")+
-							"-"+GPBD.rs.getString("nombreProducto")+
-							", "+GPBD.rs.getString("precioProducto")+
-							", "+GPBD.rs.getString("stockProducto")+
-							", "+GPBD.rs.getString("idProveedorFK"));
+					Vista.taConsultaProducto.setText(Vista.taConsultaProducto.getText() + "\n" +
+							Modelo.rs.getInt("idProducto")+
+							"-"+Modelo.rs.getString("nombreProducto")+
+							", "+Modelo.rs.getString("precioProducto")+
+							", "+Modelo.rs.getString("stockProducto")+
+							", "+Modelo.rs.getString("idProveedorFK"));
 				}
 			}
 		}
@@ -74,9 +74,9 @@ public class ConsultaProductos extends WindowAdapter implements ActionListener
 			Log.registrarLog("Consulta de producto realizada");
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -88,16 +88,16 @@ public class ConsultaProductos extends WindowAdapter implements ActionListener
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.consultaProducto.isActive())
+		if(Vista.consultaProducto.isActive())
 		{
-			GPI.consultaProducto.setVisible(false);
+			Vista.consultaProducto.setVisible(false);
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evento) 
 	{
-		if(evento.getSource().equals(GPI.btnCProdExportarPDF)) 
+		if(evento.getSource().equals(Vista.btnCProdExportarPDF)) 
 		{
 			// Se crea el documento 
 			Document documento = new Document();
@@ -107,17 +107,17 @@ public class ConsultaProductos extends WindowAdapter implements ActionListener
 				try	//Sentencia para recopilar los datos e introducirlos en la variable
 
 				{
-					GPBD.ConexionBD();
-					GPBD.sentencia = "SELECT * FROM productos";
-					GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-					GPI.taConsultaProducto.setText("");
-					while(GPBD.rs.next())
+					Modelo.ConexionBD();
+					Modelo.sentencia = "SELECT * FROM productos";
+					Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+					Vista.taConsultaProducto.setText("");
+					while(Modelo.rs.next())
 					{
-						resultado = resultado + GPBD.rs.getInt("idProducto")+
-								"-"+GPBD.rs.getString("nombreProducto")+
-								"-"+GPBD.rs.getString("precioProducto")+
-								"-"+GPBD.rs.getString("stockProducto")+
-								"-"+GPBD.rs.getString("idProveedorFK")+"\n";
+						resultado = resultado + Modelo.rs.getInt("idProducto")+
+								"-"+Modelo.rs.getString("nombreProducto")+
+								"-"+Modelo.rs.getString("precioProducto")+
+								"-"+Modelo.rs.getString("stockProducto")+
+								"-"+Modelo.rs.getString("idProveedorFK")+"\n";
 					}
 
 				}
@@ -129,9 +129,9 @@ public class ConsultaProductos extends WindowAdapter implements ActionListener
 				{
 					try
 					{
-						if(GPBD.connection!=null)
+						if(Modelo.connection!=null)
 						{
-							GPBD.connection.close();
+							Modelo.connection.close();
 						}
 					}
 					catch (SQLException e)

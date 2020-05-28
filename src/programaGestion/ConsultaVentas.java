@@ -25,39 +25,39 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 
 	ConsultaVentas()
 	{
-		GPI.consultaVenta.setLayout(new FlowLayout());
-		GPI.consultaVenta.setSize(550, 300);
-		GPI.consultaVenta.setResizable(false);
-		GPI.consultaVenta.addWindowListener(this);
-		GPI.btnCVExportarPDF.addActionListener(this);
-		GPI.consultaVenta.add(GPI.lblConsultaVenta);
-		GPI.consultaVenta.add(GPI.taConsultaVenta);
-		GPI.consultaVenta.add(GPI.btnCVExportarPDF);
-		GPI.taConsultaVenta.setEditable(false);
-		GPI.consultaVenta.setLocationRelativeTo(null);
-		GPI.consultaVenta.setVisible(true);
+		Vista.consultaVenta.setLayout(new FlowLayout());
+		Vista.consultaVenta.setSize(550, 300);
+		Vista.consultaVenta.setResizable(false);
+		Vista.consultaVenta.addWindowListener(this);
+		Vista.btnCVExportarPDF.addActionListener(this);
+		Vista.consultaVenta.add(Vista.lblConsultaVenta);
+		Vista.consultaVenta.add(Vista.taConsultaVenta);
+		Vista.consultaVenta.add(Vista.btnCVExportarPDF);
+		Vista.taConsultaVenta.setEditable(false);
+		Vista.consultaVenta.setLocationRelativeTo(null);
+		Vista.consultaVenta.setVisible(true);
 
 		try	//Sentencia para recopilar los datos e introducirlos en el text area
 
 		{
-			GPBD.ConexionBD();
-			GPBD.sentencia = "SELECT * FROM venden";
-			GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-			GPI.taConsultaVenta.setText("");
-			while(GPBD.rs.next())
+			Modelo.ConexionBD();
+			Modelo.sentencia = "SELECT * FROM venden";
+			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+			Vista.taConsultaVenta.setText("");
+			while(Modelo.rs.next())
 			{
-				if(GPI.taConsultaVenta.getText().length()==0)
+				if(Vista.taConsultaVenta.getText().length()==0)
 				{
-					GPI.taConsultaVenta.setText(GPBD.rs.getInt("idLocalFK")+
-							"-"+GPBD.rs.getString("idProductoFK")+
-							", "+GPBD.rs.getString("fechaVenta"));
+					Vista.taConsultaVenta.setText(Modelo.rs.getInt("idLocalFK")+
+							"-"+Modelo.rs.getString("idProductoFK")+
+							", "+Modelo.rs.getString("fechaVenta"));
 				}
 				else
 				{
-					GPI.taConsultaVenta.setText(GPI.taConsultaVenta.getText() + "\n" +
-							GPBD.rs.getInt("idLocalFK")+
-							"-"+GPBD.rs.getString("idProductoFK")+
-							", "+GPBD.rs.getString("fechaVenta"));
+					Vista.taConsultaVenta.setText(Vista.taConsultaVenta.getText() + "\n" +
+							Modelo.rs.getInt("idLocalFK")+
+							"-"+Modelo.rs.getString("idProductoFK")+
+							", "+Modelo.rs.getString("fechaVenta"));
 				}
 			}
 		}
@@ -70,9 +70,9 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 			Log.registrarLog("Consulta de venta realizada");
 			try
 			{
-				if(GPBD.connection!=null)
+				if(Modelo.connection!=null)
 				{
-					GPBD.connection.close();
+					Modelo.connection.close();
 				}
 			}
 			catch (SQLException e)
@@ -84,16 +84,16 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 
 	public void windowClosing(WindowEvent arg0)
 	{
-		if(GPI.consultaVenta.isActive())
+		if(Vista.consultaVenta.isActive())
 		{
-			GPI.consultaVenta.setVisible(false);
+			Vista.consultaVenta.setVisible(false);
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evento) 
 	{
-		if(evento.getSource().equals(GPI.btnCVExportarPDF)) 
+		if(evento.getSource().equals(Vista.btnCVExportarPDF)) 
 		{
 			// Se crea el documento 
 			Document documento = new Document();
@@ -104,15 +104,15 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 				try	//Sentencia para recopilar los datos e introducirlos en la variable
 
 				{
-					GPBD.ConexionBD();
-					GPBD.sentencia = "SELECT * FROM venden";
-					GPBD.rs = GPBD.statement.executeQuery(GPBD.sentencia);
-					GPI.taConsultaProducto.setText("");
-					while(GPBD.rs.next())
+					Modelo.ConexionBD();
+					Modelo.sentencia = "SELECT * FROM venden";
+					Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
+					Vista.taConsultaProducto.setText("");
+					while(Modelo.rs.next())
 					{
-						fecha = (GPBD.rs.getString("fechaVenta")).split("-");
-						resultado = resultado + GPBD.rs.getInt("idLocalFK")+
-								"-"+GPBD.rs.getString("idProductoFK")+
+						fecha = (Modelo.rs.getString("fechaVenta")).split("-");
+						resultado = resultado + Modelo.rs.getInt("idLocalFK")+
+								"-"+Modelo.rs.getString("idProductoFK")+
 								"-"+fecha[2]+"/"+fecha[1]+"/"+fecha[0]+"\n";;
 					}
 
@@ -125,9 +125,9 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 				{
 					try
 					{
-						if(GPBD.connection!=null)
+						if(Modelo.connection!=null)
 						{
-							GPBD.connection.close();
+							Modelo.connection.close();
 						}
 					}
 					catch (SQLException e)
