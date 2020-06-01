@@ -254,7 +254,7 @@ public class Controlador extends JFrame implements ActionListener, WindowListene
 		// Botón de ayuda;
 		else if(evento.getSource().equals(Vista.mniAyuda)) 
 		{
-			//new ConsultaVentas();
+			new Ayuda();
 		}
 		else
 		{

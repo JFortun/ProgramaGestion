@@ -10,7 +10,7 @@ public class Modelo {
 
 	// Conexión a la base de datos
 	static String driver = "com.mysql.cj.jdbc.Driver";
-	static String url = "jdbc:mysql://localhost:3306/pasteleria?useSSL=false";
+	static String url = "jdbc:mysql://localhost:3306/programaGestion?useSSL=false";
 	static String usuario = "root";
 	static String clave = "15935784265";
 	public static String sentencia = "";
@@ -52,8 +52,8 @@ public class Modelo {
 //***************************************************************************************************************************************
 
 /*	Código SQL para crear la base de datos
-create database pasteleria charset utf8mb4 collate utf8mb4_spanish2_ci;
-use pasteleria;
+create database programaGestion charset utf8mb4 collate utf8mb4_spanish2_ci;
+use programaGestion;
 create table locales (
 idLocal int auto_increment,
 direccionLocal varchar(45),
@@ -91,4 +91,8 @@ tipoUsuario tinyint,
 claveUsuario varchar(256),
 primary key(idUsuario)
 );
+
+SHA256:
+	administrador: B20B0F63CE2ED361E8845D6BF2E59811AAA06EC96BCDB92F9BC0C5A25E83C9A6
+	usuario: 9250E222C4C71F0C58D4C54B50A880A312E9F9FED55D5C3AA0B0E860DED99165
  */
