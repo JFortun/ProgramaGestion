@@ -52,7 +52,7 @@ public class ConsultaLocales extends WindowAdapter implements ActionListener
 				}
 				else
 				{
-					Vista.taConsultaProveedor.setText(Vista.taConsultaLocal.getText() + "\n" +
+					Vista.taConsultaLocal.setText(Vista.taConsultaLocal.getText() + "\n" +
 							Modelo.rs.getInt("idLocal")+
 							", "+Modelo.rs.getString("direccionLocal"));
 				}

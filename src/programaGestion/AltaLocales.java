@@ -12,18 +12,18 @@ public class AltaLocales extends WindowAdapter implements ActionListener
 
 	AltaLocales()
 	{
-		Vista.altaProveedor.setLayout(new FlowLayout());
-		Vista.altaProveedor.setSize(350, 130);
-		Vista.altaProveedor.setResizable(false);
-		Vista.altaProveedor.addWindowListener(this);
+		Vista.altaLocal.setLayout(new FlowLayout());
+		Vista.altaLocal.setSize(350, 130);
+		Vista.altaLocal.setResizable(false);
+		Vista.altaLocal.addWindowListener(this);
 		Vista.btnALAceptar.addActionListener(this);
 		Vista.btnALLimpiar.addActionListener(this);
-		Vista.altaProveedor.add(Vista.lblALDireccionLocal);
-		Vista.altaProveedor.add(Vista.txtALDireccionLocal);
-		Vista.altaProveedor.add(Vista.btnALAceptar);
-		Vista.altaProveedor.add(Vista.btnALLimpiar);
-		Vista.altaProveedor.setLocationRelativeTo(null);
-		Vista.altaProveedor.setVisible(true);
+		Vista.altaLocal.add(Vista.lblALDireccionLocal);
+		Vista.altaLocal.add(Vista.txtALDireccionLocal);
+		Vista.altaLocal.add(Vista.btnALAceptar);
+		Vista.altaLocal.add(Vista.btnALLimpiar);
+		Vista.altaLocal.setLocationRelativeTo(null);
+		Vista.altaLocal.setVisible(true);
 		Vista.txtALDireccionLocal.selectAll();
 		Vista.txtALDireccionLocal.setText("");
 	}
