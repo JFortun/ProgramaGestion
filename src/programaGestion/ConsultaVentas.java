@@ -46,18 +46,20 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 			Vista.taConsultaVenta.setText("");
 			while(Modelo.rs.next())
 			{
+			    String[] arrayFA = Modelo.rs.getString("fechaVenta").split("-");
+			    String fechaEuropea = arrayFA[2] + "-" + arrayFA[1] + "-" + arrayFA[0];
 				if(Vista.taConsultaVenta.getText().length()==0)
 				{
 					Vista.taConsultaVenta.setText(Modelo.rs.getInt("idLocalFK")+
 							"-"+Modelo.rs.getString("idProductoFK")+
-							", "+Modelo.rs.getString("fechaVenta"));
+							", "+ fechaEuropea);
 				}
 				else
 				{
 					Vista.taConsultaVenta.setText(Vista.taConsultaVenta.getText() + "\n" +
 							Modelo.rs.getInt("idLocalFK")+
 							"-"+Modelo.rs.getString("idProductoFK")+
-							", "+Modelo.rs.getString("fechaVenta"));
+							", " + fechaEuropea);
 				}
 			}
 		}
@@ -98,7 +100,6 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 			// Se crea el documento 
 			Document documento = new Document();
 			String resultado = "";
-			String[] fecha;
 			try 
 			{
 				try	//Sentencia para recopilar los datos e introducirlos en la variable
@@ -110,10 +111,10 @@ public class ConsultaVentas extends WindowAdapter implements ActionListener
 					Vista.taConsultaProducto.setText("");
 					while(Modelo.rs.next())
 					{
-						fecha = (Modelo.rs.getString("fechaVenta")).split("-");
+						String[] arrayFA = Modelo.rs.getString("fechaVenta").split("-");
 						resultado = resultado + Modelo.rs.getInt("idLocalFK")+
 								"-"+Modelo.rs.getString("idProductoFK")+
-								"-"+fecha[2]+"/"+fecha[1]+"/"+fecha[0]+"\n";;
+								"-"+arrayFA[2]+"/"+arrayFA[1]+"/"+arrayFA[0]+"\n";;
 					}
 
 				}

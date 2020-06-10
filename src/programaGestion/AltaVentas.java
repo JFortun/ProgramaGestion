@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javax.swing.JOptionPane;
+
 public class AltaVentas extends WindowAdapter implements ActionListener
 {
     LocalDate fecha = LocalDate.now(); // Create a date object
@@ -19,6 +21,7 @@ public class AltaVentas extends WindowAdapter implements ActionListener
 		try
 		{	
 			Vista.choAVLocalVenta.removeAll();
+			Vista.choAVLocalVenta.add("Elige un local");
 			Modelo.ConexionBD();
 			Modelo.sentencia = "SELECT * FROM locales";
 			Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
@@ -52,6 +55,7 @@ public class AltaVentas extends WindowAdapter implements ActionListener
 				try
 				{	
 					Vista.choAVProductoVenta.removeAll();
+					Vista.choAVProductoVenta.add("Elige un producto");
 					Modelo.ConexionBD();
 					Modelo.sentencia = "SELECT * FROM productos";
 					Modelo.rs = Modelo.statement.executeQuery(Modelo.sentencia);
@@ -97,7 +101,12 @@ public class AltaVentas extends WindowAdapter implements ActionListener
 		Vista.altaVenta.add(Vista.btnAVLimpiar);
 		Vista.altaVenta.setLocationRelativeTo(null);
 		Vista.altaVenta.setVisible(true);
-		Vista.txtAVFechaVenta.setText(fechaAmericana);
+		
+	    String[] arrayFA = fechaAmericana.split("-");
+	    String fechaEuropea = arrayFA[2].toString() + "-" + arrayFA[1] + "-" + arrayFA[0];
+		
+		Vista.txtAVFechaVenta.setText(fechaEuropea);
+		
 	}
 
 	public void actionPerformed(ActionEvent evento)
@@ -107,37 +116,45 @@ public class AltaVentas extends WindowAdapter implements ActionListener
 
 		if(evento.getSource().equals(Vista.btnAVAceptar)) 
 		{
-			try
+			if (Vista.choAVLocalVenta.getSelectedItem().equals("Elige un local") || Vista.choAVProductoVenta.getSelectedItem().equals("Elige un producto")) 
 			{
-
-				String[] LSeleccionado=Vista.choAVLocalVenta.getSelectedItem().split("-");
-				String localVenta = LSeleccionado[0];
-				String[] PSeleccionado=Vista.choAVProductoVenta.getSelectedItem().split("-");
-				String productoVenta = PSeleccionado[0];
-				String[] fechaFormateada = fechaAmericana.split("-");
-				Modelo.ConexionBD();
-				Modelo.sentencia = "INSERT INTO venden (idLocalFK,idProductoFK,fechaVenta) VALUES (" + localVenta+ "," + productoVenta+ ",'"+fechaFormateada[0]+"-"+fechaFormateada[1]+"-"+fechaFormateada[2]+"')";
-				Modelo.statement.executeUpdate(Modelo.sentencia);
+				JOptionPane.showMessageDialog(Vista.altaVenta, "Tienes que elegir un local y un producto");
 			}
-
-			catch (SQLException sqle)
+			else
 			{
-				System.out.println("Error 2-"+sqle.getMessage());
-			}
-
-			finally
-			{
-				Log.registrarLog("Alta de venta realizada");
 				try
 				{
-					if(Modelo.connection!=null)
-					{
-						Modelo.connection.close();
-					}
+
+					String[] LSeleccionado=Vista.choAVLocalVenta.getSelectedItem().split("-");
+					String localVenta = LSeleccionado[0];
+					String[] PSeleccionado=Vista.choAVProductoVenta.getSelectedItem().split("-");
+					String productoVenta = PSeleccionado[0];
+					String[] fechaFormateada = fechaAmericana.split("-");
+					Modelo.ConexionBD();
+					Modelo.sentencia = "INSERT INTO venden (idLocalFK,idProductoFK,fechaVenta) VALUES (" + localVenta+ "," + productoVenta+ ",'"+fechaFormateada[0]+"-"+fechaFormateada[1]+"-"+fechaFormateada[2]+"')";
+					Modelo.statement.executeUpdate(Modelo.sentencia);
 				}
-				catch (SQLException e)
+
+				catch (SQLException sqle)
 				{
-					System.out.println("Error 3-"+e.getMessage());
+					System.out.println("Error 2-"+sqle.getMessage());
+				}
+
+				finally
+				{
+					Log.registrarLog("Alta de venta realizada");
+					try
+					{
+						if(Modelo.connection!=null)
+						{
+							Modelo.connection.close();
+						}
+					}
+					catch (SQLException e)
+					{
+						System.out.println("Error 3-"+e.getMessage());
+					}
+					JOptionPane.showMessageDialog(Vista.altaVenta, "Alta de ventas realizada");
 				}
 			}
 

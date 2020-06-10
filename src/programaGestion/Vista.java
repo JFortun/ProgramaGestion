@@ -170,6 +170,8 @@ public class Vista extends WindowAdapter
 	static TextField txtAVFechaVenta = new TextField(20);
 	static Button btnAVAceptar = new Button("Aceptar");
 	static Button btnAVLimpiar = new Button("Limpiar");
+	static Dialog altaVentaConfirmacion = new Dialog(altaVenta,"ERROR, tienes que elegir alguno", true);
+
 	// Creo los elementos de consulta de ventas
 	static Frame consultaVenta = new Frame("CONSULTA DE VENTAS");
 	static Label lblConsultaVenta = new Label("Éstos son las ventas realizadas");
