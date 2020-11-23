@@ -12,7 +12,7 @@ public class Modelo {
 	static String driver = "com.mysql.cj.jdbc.Driver";
 	static String url = "jdbc:mysql://localhost:3306/programaGestion?useSSL=false";
 	static String usuario = "root";
-	static String clave = "15935784265";
+	static String clave = "root";
 	public static String sentencia = "";
 	public static Connection connection = null;
 	public static Statement statement = null;

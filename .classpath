@@ -6,19 +6,19 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/PC/git/PiedraPapelTijera/src/mysql-connector-java-8.0.20.jar">
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/mysql-connector-java-8.0.20.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itextpdf-5.5.13.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itextpdf-5.5.13.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itextpdf-5.5.13.1-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itext-pdfa-5.5.13.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itext-pdfa-5.5.13.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itext-pdfa-5.5.13.1-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itext-xtra-5.5.13.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itext-xtra-5.5.13.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/git/ProgramaGestion/src/itext-xtra-5.5.13.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itextpdf-5.5.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itextpdf-5.5.13.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itextpdf-5.5.13.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itext-pdfa-5.5.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itext-pdfa-5.5.13.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itext-pdfa-5.5.13.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itext-xtra-5.5.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itext-xtra-5.5.13.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/git/ProgramaGestion/src/itext-xtra-5.5.13.1-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
